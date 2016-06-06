@@ -1,15 +1,26 @@
 
 // preloader
 $(window).load(function(){
-    $('.preloader').fadeOut(1000); // set duration in brackets    
+    $('.preloader').fadeOut(1000); // set duration in brackets
 });
+$(document).ready(function() {
+  if($(window).width() < 425) {
+    $('#hidediv').hide();
+  }
+  console.log("Width is "+$(window).width());
+});
+$('#collapseStart').click(function() {
+  $('#hideclick').toggle();
+}); 
 $('#clicklogin').click(function() {
   $('#account').show();
   $('#login').show();
   $('#home').hide();
+  $('#contact').hide();
 });
 $('#clickcontact').click(function() {
   $('#contact').show();
+  $('#account').hide();
   $('#home').hide();
 });
 $('#click1').click(function() {

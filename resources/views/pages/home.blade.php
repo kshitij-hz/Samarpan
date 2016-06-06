@@ -11,7 +11,7 @@
 	<div class="container">
 		{{--  --}}
 		<div class="row" id="accordion">
-			<div class="col-md-5 col-md-offset-1 col-sm-12 clearfix hidden-xs" style="text-align:center;padding-top:120px;">
+			<div class="col-md-5 col-md-offset-1 col-sm-12 clearfix hidden-xs hidden-sm" style="text-align:center;padding-top:120px;" id="hidediv">
 				<h1 style="color:white;">SAMARPAN</h1><br>
 				<h4 style="color:white;">because</h4>
 				<a style="color:white;border-color:white;" class="btn btn-danger-outline">OLD IS GOLD</a>
@@ -126,7 +126,7 @@
 								<a class="btn btn-secondary" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
 						  	</div>
 						  	<div class="md-form">
-								<a class="btn teal" id="click1" aria-expanded="false">Don't Have an Account, Register here?</a>
+								<a class="btn teal" id="click1">Don't Have an Account ?,<br> Register here</a>
 						  	</div>
 						</form>  
 						<!-- <span>...or login with</span><br><br> -->
@@ -154,6 +154,7 @@
 			</div>
 			<div class="col-md-offset-1 col-md-10 col-sm-12 wow fadeIn" data-wow-delay="0.9s">
 				<form action="contact" method="post">
+					{{csrf_field()}}
 					<div class="col-md-6 col-sm-6 md-form">
 						<input name="name" type="text" class="form-control" id="name" placeholder="Name">
 				  	</div>

@@ -5,15 +5,15 @@
 
 <nav class="navbar navbar-dark red">
     <!-- Collapse button-->
-    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2">
+    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#collapseEx2" id="collapseStart">
         <i class="fa fa-bars"></i>
     </button>
     <div class="container">
         <!--Navbar Brand-->
-            <a class="navbar-brand" href="#">SAMARPAN</a>
         <!--Collapse content-->
+        <a class="navbar-brand" href="#" id="hideclick">SAMARPAN</a>
         <div class="collapse navbar-toggleable-xs" id="collapseEx2">
-            
+            <!-- <a class="navbar-brand" href="#">SAMARPAN</a> -->
             <!--Links-->
             <ul class="nav navbar-nav pull-right">
                 <li class="nav-item active">
