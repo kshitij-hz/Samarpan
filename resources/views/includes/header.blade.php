@@ -21,7 +21,7 @@
                 </li>
                 @if(Auth::guest())
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact us</a>
+                        <a class="nav-link smoothScroll" id="clickcontact">Contact us</a>
                     </li>
                     <!--Search form--> 
                     <li class="nav-item">

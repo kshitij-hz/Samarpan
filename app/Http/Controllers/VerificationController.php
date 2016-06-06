@@ -44,7 +44,6 @@ class VerificationController extends Controller
 		else{
 			$check = Verification::where('user_id', $id)->update(['code' => $code]);
 		}
-		// dd($_SERVER['SERVER_NAME']);
 		Mail::send('admin.hello', array('name' => $user->name,'link' => $link), function($message) use($user) {
 			$message->to($user->email, $user->name)->subject('Welcome!');
 		});

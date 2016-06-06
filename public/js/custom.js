@@ -7,7 +7,10 @@ $('#clicklogin').click(function() {
   $('#account').show();
   $('#login').show();
   $('#home').hide();
-  // $('#register').toggle();
+});
+$('#clickcontact').click(function() {
+  $('#contact').show();
+  $('#home').hide();
 });
 $('#click1').click(function() {
   $('#login').toggle();
