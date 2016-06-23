@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'contact', 'type'
     ];
 
     /**
@@ -23,4 +23,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * a user has a detail
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     **/
+    public function detail() {
+        return $this->hasOne('App\Detail');
+    }
 }
