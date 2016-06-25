@@ -16,17 +16,17 @@ class Detail extends Model
         'date_of_birth',
     	'contact_mobile', 'contact_mobile', 'contact_pager', 'contact_fax', 'contact_other',
     	'email_personal', 'email_other',
-        'address_permanenet', 'city_permanent', 'state_permanent', 'country_permanent', 'pincode_permanent'
+        'address_permanenet', 'city_permanent', 'state_permanent', 'country_permanent', 'pincode_permanent',
         'address_current', 'city_current', 'state_current', 'country_current', 'pincode_current',
         'address_alternate', 'city_alternate', 'state_alternate', 'country_alternate', 'pincode_alternate',
-        'retirement'
+        'retirement',
         'biography', 'description',
         'goals', 'interests', 'expertise_in',
-    	'fb', 'google', 'linkedin', 'skype'
+    	'fb', 'google', 'linkedin', 'skype',
         'photo',
         'cv',
         'website',
-        'members',
+        'members'
     ];
 
     /**
