@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'contact', 'type'
     ];
 
     /**
@@ -23,4 +23,26 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function scopeSeniors($query) {
+        return $query->where('type', '=', '2');
+    }    
+
+    /**
+     * a user has a detail
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     **/
+    public function detail() {
+        return $this->hasOne('App\Detail');
+    }
+
+    /**
+     * a user has many workexperiences
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function work_experiences() {
+        return $this->hasMany('App\WorkExperience');
+    }
 }
