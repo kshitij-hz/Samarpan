@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Input;
 class UserController extends Controller
 {
     public function __construct() {
-    	// $this->middleware('auth');
+    	$this->middleware('auth');
+        $type = Auth::user()->type;
+        if($type != '1' || $type != '2' || $type != '3') {
+            return redirect('accessError');
+        }
     }
 
     public function index() {
@@ -37,15 +41,17 @@ class UserController extends Controller
 
     public function edit() {
     	$type = Auth::user()->type;
+        $details = Auth::user()->detail()->get();
     	switch($type) {
     		case '1':
-    			return view('profile_viewer.edit');
+    			return view('profile_viewer.edit', compact('details'));
     			break;
     		case '2':
-    			return view('senior_citizen.edit');
+                $work_experiences = Auth::user()->work_experiences()->get();
+    			return view('senior_citizen.edit', compact('details', 'work_experiences'));
     			break;
     		case '3':
-    			return view('department.edit');
+    			return view('department.edit', compact('details'));
     			break;
     	}
     }
@@ -57,7 +63,18 @@ class UserController extends Controller
      * @return profile page with flash or some alert
      **/
     public function store(DetailRequest $request) {
-    	$detail = Auth::user()->detail()->create($request->all());
+        $data = $request->all();
+        if(Input::file('photo')->isValid()) {
+            $destination = 'uploads';
+            $extension = Input::file('photo')->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            Input::file('photo')->move($destination, $filename);
+            $data['photo'] = $filename;
+        }
+        $article = Auth::user()->detail()->create($data);
+        // session()->flash('flash_message', 'Your article has been created!');
+        flash()->overlay('Your details has been successfully edited');
+    	$detail = Auth::user()->detail()->createOrUpdate($request->all());
     	return redirect('profile');
     }
 
@@ -68,7 +85,7 @@ class UserController extends Controller
      * @return profile page with flash or some alert
      **/
     public function storeExperience(Request $request) {
-    	// $detail = Auth::user()->detail()->create($request->all());
+    	$newexperience = Auth::user()->work_experiences()->create($request->all());
     	return redirect('profile');
     }
 
@@ -83,6 +100,9 @@ class UserController extends Controller
     }
 
 	public function view() {
+        if(Auth::user()->type != 1)
+            return redirect('accessError');
+
 		$seniorCitizens = User::seniors()->get();
         $seniorCitizenDetails = array();
         foreach($seniorCitizens as $seniorCitizen) {
@@ -94,9 +114,6 @@ class UserController extends Controller
         $pagedData = array_slice($seniorCitizenDetails, $currentPage * $perPage, $perPage);
         $seniorCitizens = new LengthAwarePaginator($pagedData, count($seniorCitizenDetails), $perPage, $currentPage+1);
         $seniorCitizens->setPath(Input::getBasePath());
-		// dd($seniorCitizenDetails);
-		// $json = json_encode($seniorCitizenDetails);
-		// dd($json);
         return view('profile_viewer.view', compact('seniorCitizens'));
 	}
 }
