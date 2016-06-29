@@ -48,7 +48,7 @@ class CreateDetailsTable extends Migration
             $table->string('description')->nullable();
             $table->string('goals')->nullable();
             $table->string('interests')->nullable();
-            $table->string('experise_in')->nullable();
+            $table->string('expertise_in')->nullable();
             $table->string('fb')->nullable();
             $table->string('google')->nullable();
             $table->string('linkedin')->nullable();

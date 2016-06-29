@@ -1,13 +1,9 @@
 <?php
 
-Route::get('/', function () {
-    return view('pages.home');
-});
-
 Route::auth();
 /*The routes for different page links*/
 Route::get('/home', 'HomeController@index');
-// Route::get('home', 'PageController@index');
+Route::get('/', 'PageController@index');
 Route::get('about', 'PageController@about');
 Route::get('contact', 'PageController@contact');
 

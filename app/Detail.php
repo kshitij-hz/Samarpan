@@ -29,6 +29,11 @@ class Detail extends Model
         'members'
     ];
 
+    protected $dates = [
+        'date_of_birth',
+        'retirement'
+    ];
+
     /**
      * a detail is of a user
      *

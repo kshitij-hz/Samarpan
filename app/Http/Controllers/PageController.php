@@ -13,7 +13,14 @@ class PageController extends Controller
     }
 
     public function index() {
-
+    	if(Auth::guest())
+    		return view('pages.home');
+    	else {
+    		$type = Auth::user()->type;
+    		if($type == '0')
+    			return view('admin.index');
+    		else return redirect('profile');
+    	}
     }
 
     public function about() {

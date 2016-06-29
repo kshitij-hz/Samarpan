@@ -6,15 +6,15 @@
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 
-	<!-- <link rel="stylesheet" href="css/animate.min.css"> -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">	
-	<link href="css/mdb.min.css" rel="stylesheet">
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"> -->
-	<link rel="stylesheet" type="text/css" href="font-awesome-4.1.0/css/font-awesome.min.css">
-	<!-- <link rel="stylesheet" href="css/nivo-lightbox.css"> -->
-	<!-- <link rel="stylesheet" href="css/nivo_themes/default/default.css"> -->
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/fonts.css">
+	<!-- <link rel="stylesheet" href="{{ URL::asset('css/animate.min.css') }}"> -->
+	<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">	
+	<link href="{{ URL::asset('css/mdb.min.css') }}" rel="stylesheet">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css') }}"> -->
+	<link rel="stylesheet" type="text/css" href="{{ URL::asset('font-awesome-4.1.0/css/font-awesome.min.css') }}">
+	<!-- <link rel="stylesheet" href="{{ URL::asset('css/nivo-lightbox.css') }}"> -->
+	<!-- <link rel="stylesheet" href="{{ URL::asset('css/nivo_themes/default/default.css') }}"> -->
+	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
+	<link rel="stylesheet" href="{{ URL::asset('css/fonts.css') }}">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
 
 	<style type="text/css">
@@ -35,5 +35,29 @@
 		}
 		.text-center {
 		    text-align: center;
+		}
+		.pagination>li {
+			display: inline !important;
+		}
+		.pagination {
+			display: block;
+		}
+		* {
+			box-sizing: border-box;
+		}
+		ul {
+			list-style-type: disc;
+		}
+		.pagination>li>a, .pagination>li>span {
+		    position: relative;
+		    float: left;
+		    padding: 20px;
+		    margin-left: 2px;
+		    line-height: 1.42857143;
+		    color: #337ab7;
+		    border-radius: 100px;
+		    text-decoration: none;
+		    background-color: #fff;
+		    border: 1px solid #ddd;
 		}
 	</style>

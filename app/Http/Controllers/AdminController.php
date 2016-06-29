@@ -25,7 +25,8 @@ class AdminController extends Controller
      * @return view
      **/
     public function index() {
-    	
+        // dd(Auth::user());
+    	return view('admin.index');
     }
 
 	/**
@@ -39,7 +40,8 @@ class AdminController extends Controller
         $seniorCitizenDetails = array();
         foreach($seniorCitizens as $seniorCitizen) {
             $details = $seniorCitizen->detail()->get();
-            array_push($seniorCitizenDetails, $details);
+            if(count($details) != 0)    
+                array_push($seniorCitizenDetails, $details);
         }
         $perPage = 2;
         $currentPage = Input::get('page', 1) - 1;
@@ -57,19 +59,20 @@ class AdminController extends Controller
      * @return view with pagination
      **/
     public function profileViewers() {
-    	$departments = User::viewers()->get();
-        $departmentDetails = array();
-        foreach($departments as $department) {
-            $details = $department->detail()->get();
-            array_push($departmentDetails, $details);
+    	$profileViewers = User::viewers()->get();
+        $profileViewerDetails = array();
+        foreach($profileViewers as $profileViewer) {
+            $details = $profileViewer->detail()->get();
+            if(count($details) != 0)
+                array_push($profileViewerDetails, $details);
         }
         $perPage = 2;
         $currentPage = Input::get('page', 1) - 1;
-        $total = count($departmentDetails);
-        $pagedData = array_slice($departmentDetails, $currentPage * $perPage, $perPage);
-        $departments = new LengthAwarePaginator($pagedData, $total, $perPage, $currentPage+1);
-        $departments->setPath(Input::getBasePath());
-        return view('admin.profile_viewers', compact('departments'));
+        $total = count($profileViewerDetails);
+        $pagedData = array_slice($profileViewerDetails, $currentPage * $perPage, $perPage);
+        $profileViewers = new LengthAwarePaginator($pagedData, $total, $perPage, $currentPage+1);
+        $profileViewers->setPath(Input::getBasePath());
+        return view('admin.profile_viewers', compact('profileViewers'));
     }
 
     /**
@@ -83,7 +86,8 @@ class AdminController extends Controller
         $departmentDetails = array();
         foreach($departments as $department) {
             $details = $department->detail()->get();
-            array_push($departmentDetails, $details);
+            if(count($details) != 0)
+                array_push($departmentDetails, $details);
         }
         $perPage = 2;
         $currentPage = Input::get('page', 1) - 1;
@@ -91,6 +95,7 @@ class AdminController extends Controller
         $pagedData = array_slice($departmentDetails, $currentPage * $perPage, $perPage);
         $departments = new LengthAwarePaginator($pagedData, $total, $perPage, $currentPage+1);
         $departments->setPath(Input::getBasePath());
+
         return view('admin.departments', compact('departments'));
     }
 
