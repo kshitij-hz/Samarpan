@@ -10,6 +10,16 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
+                        @if(!empty(old('register')))
+                          <?php $reg_email = old('email'); 
+                                $reg_email_color = $errors->has('email') ? ' has-error' : '';
+                                $reg_psswd_color = $errors->has('password') ? ' has-error' : '';
+
+                          ?>
+                        @else 
+                          <?php $reg_email = $reg_email_color = $reg_psswd_color = ''; ?> 
+                        @endif
+
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
 
@@ -24,26 +34,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
-                            <label for="contact" class="col-md-4 control-label">Mobile</label>
-
-                            <div class="col-md-6">
-                                <input id="contact" type="number" class="form-control" name="contact" value="{{ old('contact') }}">
-
-                                @if ($errors->has('contact'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('contact') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $reg_email_color }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $reg_email }}">
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('email') && !empty(old('register')))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
@@ -51,13 +48,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $reg_psswd_color }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password">
 
-                                @if ($errors->has('password'))
+                                @if ($errors->has('password') && !empty(old('register')))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
@@ -81,7 +78,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" name="register" value="register">
                                     <i class="fa fa-btn fa-user"></i> Register
                                 </button>
                             </div>
@@ -98,13 +95,23 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        @if(!empty(old('login')))
+                          <?php $login_email = old('email'); 
+                                $login_email_color = $errors->has('email') ? ' has-error' : '';
+                                $login_psswd_color = $errors->has('password') ? ' has-error' : '';
+
+                          ?>
+                        @else 
+                          <?php $login_email = $login_email_color = $login_psswd_color = ''; ?> 
+                        @endif
+
+                        <div class="form-group{{ $login_email_color }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ $login_email }}">
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('email') && !empty(old('login')))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
@@ -112,13 +119,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <div class="form-group{{  $login_psswd_color }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password">
 
-                                @if ($errors->has('password'))
+                                @if ($errors->has('password') && !empty(old('login')))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
@@ -138,7 +145,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" name="login" class="btn btn-primary" value="login">
                                     <i class="fa fa-btn fa-sign-in"></i> Login
                                 </button>
 
