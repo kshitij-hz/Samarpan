@@ -9,10 +9,11 @@
         <i class="fa fa-bars"></i>
     </button>
     <div class="container">
+        <!--Navbar Brand-->
+            <a class="navbar-brand" href="#">SAMARPAN</a>
         <!--Collapse content-->
         <div class="collapse navbar-toggleable-xs" id="collapseEx2">
-            <!--Navbar Brand-->
-            <a class="navbar-brand" href="#">SAMARPAN</a>
+            
             <!--Links-->
             <ul class="nav navbar-nav pull-right">
                 <li class="nav-item active">
@@ -20,22 +21,14 @@
                 </li>
                 @if(Auth::guest())
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item dropdown right">
-                        <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+                        <a class="nav-link" href="#">Contact us</a>
                     </li>
                     <!--Search form--> 
                     <li class="nav-item">
-                        <a href="{{ url('login') }}" class="nav-link">Login</a>
+                        <a class="nav-link smoothScroll" href="#register">Don't Have Account?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link smoothScroll" href="#login">Login</a>
                     </li>
                 @endif
 
@@ -54,17 +47,45 @@
                         <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <b>{{Auth::user()->name}}</b></a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             <a class="dropdown-item" href="{{ url('admin/settings') }}">Settings <i class="fa fa-gear"></i></a>
-                            <a class="dropdown-item" href="#">Logout <i class="fa fa-sign-out"></i></a>
+                            <a class="dropdown-item" href="{{ url('logout') }}">Logout <i class="fa fa-sign-out"></i></a>
                         </div>
                     </li>
                 @endif
 
                 @if(Auth::user()->type == '1')
-
+                    <li class="nav-item">
+                        <a class="nav-link smoothScroll" href="{{ url('profile/#profile') }}">My profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('profile/edit') }}">Edit Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('view_senior_citizens') }}">View Senior Citizens</a>
+                    </li>
+                    <li class="nav-item dropdown right">
+                        <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <b>{{Auth::user()->name}}</b></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <a class="dropdown-item" href="{{ url('logout') }}">Logout <i class="fa fa-sign-out"></i></a>
+                        </div>
+                    </li>
                 @endif
 
                 @if(Auth::user()->type == '2')
-
+                    <li class="nav-item">
+                        <a class="nav-link smoothScroll" href="{{ url('profile/#profile') }}">My profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('profile/edit') }}">Edit Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('profile/work_experience') }}">Work Experiences</a>
+                    </li>
+                    <li class="nav-item dropdown right">
+                        <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <b>{{Auth::user()->name}}</b></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <a class="dropdown-item" href="{{ url('logout') }}">Logout <i class="fa fa-sign-out"></i></a>
+                        </div>
+                    </li>
                 @endif
 
                 @if(Auth::user()->type == '3')

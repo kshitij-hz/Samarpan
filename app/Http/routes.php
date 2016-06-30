@@ -2,7 +2,6 @@
 
 Route::auth();
 /*The routes for different page links*/
-Route::get('/home', 'HomeController@index');
 Route::get('/', 'PageController@index');
 Route::get('about', 'PageController@about');
 Route::get('contact', 'PageController@contact');
@@ -18,8 +17,9 @@ Route::get('admin/settings', 'AdminController@settings');
 
 /*The routes for other users*/
 Route::get('profile', 'UserController@index');
+Route::any('profile/new', 'UserController@store');
 Route::get('profile/edit', 'UserController@edit');
-Route::post('profile/store', 'UserController@store');
+Route::post('profile/update', 'UserController@update');
 Route::post('profile/store_experience', 'UserController@storeExperience');
 Route::post('profile/bulk', 'UserController@bulkUpload');
 Route::get('view_senior_citizens', 'UserController@view'); //view senior citizen details

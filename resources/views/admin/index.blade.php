@@ -11,18 +11,4 @@
 		</div>
 	</div>		
 </section>
-
-<!-- contact section -->
-<section id="contact" class="parallax-section">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10 col-sm-12 text-center">
-				<h1 class="heading">Contact Us</h1>
-				<hr>
-			</div>
-			
-			
-		</div>
-	</div>
-</section>
 @stop

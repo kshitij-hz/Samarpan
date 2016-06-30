@@ -27,21 +27,21 @@ class UserController extends Controller
     	$details = Auth::user()->detail()->get();
     	switch($type) {
     		case '1':
-    			return view('profile_viewer.index', compact('$details'));
+    			return view('profile_viewer.index', compact('details'));
     			break;
     		case '2':
     			$work_experiences = Auth::user()->work_experiences()->get();
-    			return view('senior_citizen.index', compact('$details', 'work_experiences'));
+    			return view('senior_citizen.index', compact('details', 'work_experiences'));
     			break;
     		case '3':
-    			return view('department.index', compact('$details'));
+    			return view('department.index', compact('details'));
     			break;
     	}
     }
 
     public function edit() {
     	$type = Auth::user()->type;
-        $details = Auth::user()->detail()->get();
+        $details = Auth::user()->detail()->get()[0];
     	switch($type) {
     		case '1':
     			return view('profile_viewer.edit', compact('details'));
@@ -62,19 +62,28 @@ class UserController extends Controller
      * @param DetailRequest request
      * @return profile page with flash or some alert
      **/
-    public function store(DetailRequest $request) {
+    public function store(Request $request) {
         $data = $request->all();
-        if(Input::file('photo')->isValid()) {
-            $destination = 'uploads';
-            $extension = Input::file('photo')->getClientOriginalExtension();
+        // var_dump(Input::file('photofile'));
+        // dd($data);
+        if(Input::file('photofile')->isValid()) {
+            $destination = 'photo';
+            $extension = Input::file('photofile')->getClientOriginalExtension();
             $filename = time().'.'.$extension;
-            Input::file('photo')->move($destination, $filename);
+            Input::file('photofile')->move($destination, $filename);
             $data['photo'] = $filename;
         }
-        $article = Auth::user()->detail()->create($data);
+        if(Auth::user()->type=='2' && Input::file('cvfile')->isValid()) {
+            $destination = 'cv';
+            $extension = Input::file('cvfile')->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            Input::file('cvfile')->move($destination, $filename);
+            $data['cv'] = $filename;
+        }
+
+        $detail = Auth::user()->detail()->create($data);
         // session()->flash('flash_message', 'Your article has been created!');
-        flash()->overlay('Your details has been successfully edited');
-    	$detail = Auth::user()->detail()->createOrUpdate($request->all());
+        // flash()->overlay('Your profile has been successfully created');
     	return redirect('profile');
     }
 
@@ -107,7 +116,8 @@ class UserController extends Controller
         $seniorCitizenDetails = array();
         foreach($seniorCitizens as $seniorCitizen) {
             $details = $seniorCitizen->detail()->get();
-            array_push($seniorCitizenDetails, $details);
+            if(count($details) != 0)    
+                array_push($seniorCitizenDetails, $details);
         }
         $perPage = 2;
         $currentPage = Input::get('page', 1) - 1;
