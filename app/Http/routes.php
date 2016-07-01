@@ -17,13 +17,18 @@ Route::get('admin/settings', 'AdminController@settings');
 
 /*The routes for other users*/
 Route::get('profile', 'UserController@index');
-Route::any('profile/new', 'UserController@store');
+Route::get('profile/view', 'UserController@profile');
+Route::get('profile/work_experience', 'UserController@workExperience');
 Route::get('profile/edit', 'UserController@edit');
-Route::post('profile/update', 'UserController@update');
-Route::post('profile/store_experience', 'UserController@storeExperience');
+Route::get('view_senior_citizens', 'UserController@view');
+Route::get('view_senior_citizen/{user}', 'UserController@show');
+Route::get('cvdownload/{detail}', 'UserController@download');
+Route::get('upload', 'UserController@uploadView');
+Route::any('profile/new', 'UserController@store');
+Route::any('profile/update', 'UserController@update');
+Route::post('profile/add_experience', 'UserController@storeExperience');
 Route::post('profile/bulk', 'UserController@bulkUpload');
-Route::get('view_senior_citizens', 'UserController@view'); //view senior citizen details
-Route::get('view_senior_citizen/{id}', 'UserController@show');
+
 
 /*The route for errors*/
 Route::get('accessError', function() {

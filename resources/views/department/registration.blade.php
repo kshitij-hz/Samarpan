@@ -11,9 +11,9 @@
 					<div class="content">
 						<form action="profile/new" method="POST" files="true" enctype="multipart/form-data">
 							{{csrf_field()}}
-							<label>Company Full Name:</label>
+							<label>Department Full Name:</label>
 							<div class="md-form">
-				                <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Company Name">
+				                <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Department Name">
 				            </div>
 						    <label>Date of Origin:</label>
 							<div class="md-form">
@@ -23,7 +23,7 @@
 							<div class="md-form">
 								<input name="contact_mobile" type="number" class="form-control" id="mobNumber" placeholder="Contact Number" disabled value="{{Auth::user()->contact}}">
 							</div>
-							<label>Contact Office:</label>
+							<label>Contact Work:</label>
 							<div class="md-form">
 								<input name="contact_work" type="number" class="form-control" id="mobNumber" placeholder="Work's Number">
 							</div>
@@ -115,27 +115,11 @@
 							<div class="md-form">
 								<input type="number" name="members" class="form-control" placeholder="No. of Members">
 							</div>
-							<label>Facebook Profile link:</label>
-							<div class="md-form">
-								<input name="fb" type="text" class="form-control" placeholder="fb Profile link">
-							</div>
-							<label>Google+ Profile link:</label>
-							<div class="md-form">
-								<input name="google" type="text" class="form-control" placeholder="Google+ Profile link:">
-							</div>
-							<label>LinkedIn Profile link:</label>
-							<div class="md-form">
-								<input name="linkedin" type="text" class="form-control" placeholder="LinkedIn Profile link">
-							</div>
-							<label>Skype ID:</label>
-							<div class="md-form">
-								<input name="skype" type="text" class="form-control" placeholder="Skype ID">
-							</div>
 							<label>Website link:</label>
 							<div class="md-form">
 								<input name="website" type="text" class="form-control" placeholder="Website link">
 							</div>
-							<label>Upload Company's logo:</label>
+							<label>Upload Department's logo:</label>
 							<div class="file-field">
 						        <div class="btn btn-primary">
 						            <span>Choose file</span>

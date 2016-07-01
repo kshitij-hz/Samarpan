@@ -11,7 +11,7 @@
 					<div class="content">
 						<form action="profile/new" method="POST" files="true" enctype="multipart/form-data">
 							{{csrf_field()}}
-							<label>Company Full Name:</label>
+							<label>Department Full Name:</label>
 					        <div class="md-form">
 				                <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Full Name" value="{{$details->firstname}}">
 						    </div>	
@@ -23,7 +23,7 @@
 							<div class="md-form">
 								<input name="contact_mobile" type="number" class="form-control" id="mobNumber" placeholder="Contact Number" disabled value="{{Auth::user()->contact}}">
 							</div>
-							<label>Contact Work:</label>
+							<label>Contact Office:</label>
 							<div class="md-form">
 								<input name="contact_work" type="number" class="form-control" id="mobNumber" placeholder="Work's Number" value="{{$details->contact_work}}">
 							</div>
@@ -115,27 +115,11 @@
 							<div class="md-form">
 								<input type="number" name="members" class="form-control" placeholder="No. of Members" value="{{$details->members}}">
 							</div>
-							<label>Facebook Profile link:</label>
-							<div class="md-form">
-								<input name="fb" type="text" class="form-control" placeholder="fb Profile link" value="{{$details->fb}}">
-							</div>
-							<label>Google+ Profile link:</label>
-							<div class="md-form">
-								<input name="google" type="text" class="form-control" placeholder="Google+ Profile link:" value="{{$details->google}}">
-							</div>
-							<label>LinkedIn Profile link:</label>
-							<div class="md-form">
-								<input name="linkedin" type="text" class="form-control" placeholder="LinkedIn Profile link" value="{{$details->linkedin}}">
-							</div>
-							<label>Skype ID:</label>
-							<div class="md-form">
-								<input name="skype" type="text" class="form-control" placeholder="Skype ID" value="{{$details->skype}}">
-							</div>
 							<label>Website link:</label>
 							<div class="md-form">
 								<input name="website" type="text" class="form-control" placeholder="Website link" value="{{$details->website}}">
 							</div>
-							<label>Update Company's logo:</label>
+							<label>Update Department's logo:</label>
 							<div class="file-field">
 						        <div class="btn btn-primary">
 						            <span>Choose file</span>

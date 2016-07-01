@@ -54,7 +54,7 @@
 
                 @if(Auth::user()->type == '1')
                     <li class="nav-item">
-                        <a class="nav-link smoothScroll" href="{{ url('profile/#profile') }}">My profile</a>
+                        <a class="nav-link smoothScroll" href="{{ url('profile/view') }}">My profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('profile/edit') }}">Edit Details</a>
@@ -72,7 +72,7 @@
 
                 @if(Auth::user()->type == '2')
                     <li class="nav-item">
-                        <a class="nav-link smoothScroll" href="{{ url('profile/#profile') }}">My profile</a>
+                        <a class="nav-link smoothScroll" href="{{ url('profile/view') }}">My profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('profile/edit') }}">Edit Details</a>
@@ -89,7 +89,21 @@
                 @endif
 
                 @if(Auth::user()->type == '3')
-
+                    <li class="nav-item">
+                        <a class="nav-link smoothScroll" href="{{ url('profile/view') }}">My profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('profile/edit') }}">Edit Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('upload') }}">Upload Data</a>
+                    </li>
+                    <li class="nav-item dropdown right">
+                        <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <b>{{Auth::user()->name}}</b></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <a class="dropdown-item" href="{{ url('logout') }}">Logout <i class="fa fa-sign-out"></i></a>
+                        </div>
+                    </li>
                 @endif
                 @endif
             </ul>

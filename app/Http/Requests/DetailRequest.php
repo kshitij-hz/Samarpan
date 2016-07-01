@@ -21,8 +21,26 @@ class DetailRequest extends Request
      * @return array
      */
     public function rules() {
-        $rules [
-            //
+        $rules = [
+            'firstname' => 'required|alpha',
+            'middlename' => 'alpha',
+            'lastname' => 'alpha',
+            'date_of_birth' => 'date',
+            'retirement' => 'date',
+            'contact_mobile' => 'numeric|max:10',
+            'contact_home' => 'numeric|max:10',
+            'contact_work' => 'numeric|max:10',
+            'contact_pager' => 'numeric|max:10',
+            'contact_fax' => 'numeric|max:10',
+            'email_personal' => 'email',
+            'email_work' => 'email',
+            'email_other' => 'email',
+            'photo' => 'present|image',
+            'members' => 'numeric'
+            'website' => 'url',
+            'fb' => 'active_url',
+            'google' => 'active_url',
+            'linkedin' => 'active_url'
         ];
 
         return $rules;

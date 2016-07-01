@@ -27,8 +27,7 @@
 <script src="{{ URL::asset('js/bootstrap.min.js') }}""></script>
 <script src="{{ URL::asset('js/mdb.min.js') }}""></script>
 <script src="{{ URL::asset('js/jquery.parallax.js') }}""></script>
-<!-- <script src="{{ URL::asset('js/smoothscroll.js') }}""></script> -->
+<script src="{{ URL::asset('js/smoothscroll.js') }}""></script>
 <script src="{{ URL::asset('js/nivo-lightbox.min.js') }}""></script>
-<!-- <script src="{{ URL::asset('js/wow.min.js') }}""></script> -->
 <script src="{{ URL::asset('js/custom.js') }}""></script>
 <script type="text/javascript" src="{{ URL::asset('js/tether.min.js') }}""></script>

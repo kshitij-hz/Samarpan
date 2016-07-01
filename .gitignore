@@ -3,6 +3,7 @@
 /public/storage
 /public/photo/*jpg
 /public/photo/*png
+/public/cv/*pdf
 Homestead.yaml
 Homestead.json
 .env
