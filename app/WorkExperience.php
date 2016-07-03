@@ -12,10 +12,12 @@ class WorkExperience extends Model
      * @var array
      */
     protected $fillable = [
-        'company',
+        'sector', 'category',
+        'ministry', 'department',
+        'company', 'location',
+        'rank', 'position', 'role',
         'from',
         'to',
-        'position',
         'description'
     ];
 

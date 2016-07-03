@@ -2,9 +2,7 @@
 @section('content')
 
 	@if(!count($details))
-		@include('senior_citizen.registration')	
-	@elseif(!count($work_experiences))
-		@include('senior_citizen.work_experiences')	
+		@include('department.registration')	
 	@else
 		<section id="home" class="parallax-section">
 			<div class="container">

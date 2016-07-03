@@ -23,14 +23,6 @@
 					<div class="content">
 						<form action="{{ url('/register') }}" method="post">
 						{{ csrf_field() }}
-						@if(!empty(old('register')))
-                          <?php $reg_email = old('email'); 
-                                $reg_email_color = $errors->has('email') ? ' has-error' : '';
-                                $reg_psswd_color = $errors->has('password') ? ' has-error' : '';
-                          ?>
-                        @else 
-                          <?php $reg_email = $reg_email_color = $reg_psswd_color = ''; ?> 
-                        @endif
 							<div class="md-form">
 								<select class="mdb-select" name="type">
 								    <option value="" disabled selected>Choose type of account</option>
@@ -49,7 +41,7 @@
 							</div>
 							<div class="md-form">
 								<input name="email" type="email" class="form-control" id="email" placeholder="Email">
-								@if ($errors->has('email') && !empty(old('register')))
+								@if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
@@ -65,7 +57,7 @@
 							</div>
 							<div class="md-form">
 								<input name="password" type="password" class="form-control" id="password" placeholder="Password">
-								@if ($errors->has('password') && !empty(old('register')))
+								@if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
@@ -95,29 +87,11 @@
 					<div class="login">
 						<form action="login" method="post">
 							{{csrf_field()}}
-							@if(!empty(old('login')))
-	                          <?php $login_email = old('email'); 
-	                                $login_email_color = $errors->has('email') ? ' has-error' : '';
-	                                $login_psswd_color = $errors->has('password') ? ' has-error' : '';
-	                          ?>
-	                        @else 
-	                          <?php $login_email = $login_email_color = $login_psswd_color = ''; ?> 
-	                        @endif
-							<div class="form-group{{ $login_email_color }}">
-								<input name="email" type="email" class="form-control" id="email" placeholder="Email" value="{{$login_email}}">
-								@if ($errors->has('email') && !empty(old('login')))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+							<div class="md-form">
+								<input name="email" type="email" class="form-control" id="email" placeholder="Email">
 							</div>
-							<div class="form-group{{  $login_psswd_color }}">
+							<div class="md-form">
 								<input name="password" type="password" class="form-control" id="password" placeholder="Password">
-								@if ($errors->has('password') && !empty(old('login')))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
 						  	</div>
 
 						  <div class="md-form">

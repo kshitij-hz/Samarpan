@@ -51,53 +51,40 @@
                         </div>
                     </li>
                 @endif
-
-                @if(Auth::user()->type == '1')
+                @if(Auth::user()->type == '3' || Auth::user()->type == '2' || Auth::user()->type == '1')
+                    @if(count(Auth::user()->detail()->get()))
                     <li class="nav-item">
                         <a class="nav-link smoothScroll" href="{{ url('profile/view') }}">My profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('profile/edit') }}">Edit Details</a>
-                    </li>
+                    </li>                    
+                    @endif
+                @endif
+
+                @if(Auth::user()->type == '1')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('view_senior_citizens') }}">View Senior Citizens</a>
-                    </li>
-                    <li class="nav-item dropdown right">
-                        <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <b>{{Auth::user()->name}}</b></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="{{ url('logout') }}">Logout <i class="fa fa-sign-out"></i></a>
-                        </div>
                     </li>
                 @endif
 
                 @if(Auth::user()->type == '2')
+                    @if(Auth::user()->verify == '0')
                     <li class="nav-item">
-                        <a class="nav-link smoothScroll" href="{{ url('profile/view') }}">My profile</a>
+                        <a class="nav-link" href="{{ url('profile/verify_email') }}">Verify Email</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('profile/edit') }}">Edit Details</a>
-                    </li>
+                    @endif                    
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('profile/work_experience') }}">Work Experiences</a>
                     </li>
-                    <li class="nav-item dropdown right">
-                        <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <b>{{Auth::user()->name}}</b></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="{{ url('logout') }}">Logout <i class="fa fa-sign-out"></i></a>
-                        </div>
-                    </li>
                 @endif
-
+                
                 @if(Auth::user()->type == '3')
-                    <li class="nav-item">
-                        <a class="nav-link smoothScroll" href="{{ url('profile/view') }}">My profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('profile/edit') }}">Edit Details</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('upload') }}">Upload Data</a>
                     </li>
+                @endif
+                @if(Auth::user()->type == '3' || Auth::user()->type == '2' || Auth::user()->type == '1')
                     <li class="nav-item dropdown right">
                         <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <b>{{Auth::user()->name}}</b></a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu1">

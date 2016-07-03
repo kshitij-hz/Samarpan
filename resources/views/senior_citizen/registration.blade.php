@@ -16,22 +16,42 @@
 						        <div class="col-md-4">
 						            <div class="md-form">
 						                <input type="text" id="firstname" name="firstname" class="form-control" placeholder="First Name">
+						                @if ($errors->has('firstname'))
+				                            <span class="help-block">
+				                                <strong>{{ $errors->first('firstname') }}</strong>
+				                            </span>
+				                        @endif
 						            </div>
 						        </div>
 						        <div class="col-md-4">
 						            <div class="md-form">
 						                <input type="text" id="middlename" name="middlename" class="form-control" placeholder="Second Name">
+						                @if ($errors->has('middlename'))
+				                            <span class="help-block">
+				                                <strong>{{ $errors->first('middlename') }}</strong>
+				                            </span>
+				                        @endif
 						            </div>
 						        </div>
 						        <div class="col-md-4">
 						            <div class="md-form">
 						                <input type="text" id="lastname" name="lastname" class="form-control" placeholder="Last Name">
+						                @if ($errors->has('lastname'))
+				                            <span class="help-block">
+				                                <strong>{{ $errors->first('lastname') }}</strong>
+				                            </span>
+				                        @endif
 						            </div>
 						        </div>
 						    </div>	
 						    <label>Date of Birth:</label>
 							<div class="md-form">
 								<input name="date_of_birth" type="date" class="form-control" id="date_of_birth" placeholder="date of Birth">
+								@if ($errors->has('date_of_birth'))
+		                            <span class="help-block">
+		                                <strong>{{ $errors->first('date_of_birth') }}</strong>
+		                            </span>
+		                        @endif
 							</div>
 
 							<label>Choose Gender:</label>
@@ -61,10 +81,20 @@
 							<label>Contact Home:</label>
 							<div class="md-form">
 								<input name="contact_home" type="number" class="form-control" id="mobNumber" placeholder="Home's Number">
+								@if ($errors->has('contact_home'))
+		                            <span class="help-block">
+		                                <strong>{{ $errors->first('contact_home') }}</strong>
+		                            </span>
+		                        @endif
 							</div>
 							<label>Contact Fax:</label>
 							<div class="md-form">
 								<input name="contact_fax" type="number" class="form-control" id="mobNumber" placeholder="Fax Contact Number">
+								@if ($errors->has('contact_fax'))
+		                            <span class="help-block">
+		                                <strong>{{ $errors->first('contact_fax') }}</strong>
+		                            </span>
+		                        @endif
 							</div>
 							<label>Contact Pager:</label>
 							<div class="md-form">
@@ -73,6 +103,11 @@
 							<label>Other Contact No:</label>
 							<div class="md-form">
 								<input name="contact_other" type="number" class="form-control" id="mobNumber" placeholder="Other Contact Number">
+								@if ($errors->has('contact_alternate'))
+		                            <span class="help-block">
+		                                <strong>{{ $errors->first('contact_alternate') }}</strong>
+		                            </span>
+		                        @endif
 							</div>
 							<label>Personal Email Address:</label>
 							<div class="md-form">
@@ -81,6 +116,11 @@
 							<label>Other Email Address:</label>
 							<div class="md-form">
 								<input name="email_other" type="email" class="form-control" id="email" placeholder="Alternate Email Address">
+								@if ($errors->has('email_other'))
+		                            <span class="help-block">
+		                                <strong>{{ $errors->first('email_other') }}</strong>
+		                            </span>
+		                        @endif
 							</div>
 							<label>Complete Permanent Address:</label>
 							<div class="md-form">

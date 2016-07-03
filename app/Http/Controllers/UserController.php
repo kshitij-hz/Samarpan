@@ -30,6 +30,7 @@ class UserController extends Controller
     			return view('profile_viewer.index', compact('details'));
     			break;
     		case '2':
+                $work_experiences = Auth::user()->work_experiences()->get();
     			return view('senior_citizen.index', compact('details', 'work_experiences'));
     			break;
     		case '3':
@@ -46,6 +47,7 @@ class UserController extends Controller
                 return view('profile_viewer.profile', compact('details'));
                 break;
             case '2':
+                $work_experiences = Auth::user()->work_experiences()->get();
                 return view('senior_citizen.profile', compact('details', 'work_experiences'));
                 break;
             case '3':
@@ -54,12 +56,18 @@ class UserController extends Controller
         }
     }
 
+    public function startVerification() {
+        $verify = Auth::user()->verify;
+        if($verify=='0')
+            return redirect('verification')->with('verif_id', Auth::user()->id);
+    }
+
     public function workExperience() {
         if(Auth::user()->type != '2')
             return redirect('accessError');
 
-        $work_experiences = Auth::user()->work_experiences()->get();
-        return view('senior_citizen.work_experience', compact('$work_experiences'));
+        $work_experiences = Auth::user()->work_experiences()->latest('to')->get();
+        return view('senior_citizen.work_experience', compact('work_experiences'));
     }
 
     public function edit() {
@@ -128,6 +136,38 @@ class UserController extends Controller
     }
 
     /**
+     * open upload page for department
+     *
+     * 
+     * @return upload view to upload csv or xls
+     **/
+    public function uploadView() {
+        if(Auth::user()->type != '3')
+            return redirect('accessError');
+        return view('department.upload');
+    }
+
+    /**
+     * store the work experiences in database
+     *
+     * @param Request request
+     * @return profile page with flash or some alert
+     **/
+    public function storeExperience(Request $request) {
+        $this->validate($request, [
+            'sector' => 'required',
+            'category' => 'required',
+            'company' => 'required',
+            'position' => 'required',
+            'role' => 'required',
+            'from' => 'date',
+            'to' => 'date'
+        ]);
+        $newexperience = Auth::user()->work_experiences()->create($request->all());
+        return redirect('profile');
+    }
+
+    /**
      * store the initial details in database
      *
      * @param DetailRequest request
@@ -186,23 +226,67 @@ class UserController extends Controller
     }
 
     /**
-     * store the work experiences in database
-     *
-     * @param Request request
-     * @return profile page with flash or some alert
-     **/
-    public function storeExperience(Request $request) {
-    	$newexperience = Auth::user()->work_experiences()->create($request->all());
-    	return redirect('profile');
-    }
-
-    /**
      * store the bulk details in database
      *
      * @param Request request
      * @return profile page with flash or some alert
      **/
     public function bulkUpload(Request $request) {
+        $this->validate($request, [
+            'file' => 'required|max:1024'
+        ]);
+        if($request->hasFile('file')) {
+            $file = Input::file('file');
+            
+            $extension = $file->getClientOriginalExtension();
+            if ($extension!='csv' && $extension!='xls' && $extension!='xlsx') {
+                return redirect('upload')->with('filetype_error','upload a csv or an excel file only');
+            }
+           
+            if (($handle = fopen($file,'r')) !== FALSE) {
+                while (($data = fgetcsv($handle, 1000, ',')) !==FALSE) {
+                    if(!isset($data[0]) || empty($data[0]) || !isset($data[9]) || empty($data[9]))
+                        continue;
+                    if(strtolower($data[0]) == "firstname")
+                        continue;
+                    $check = User::where("email",$data[1])->count();
+                    if($check>0)
+                        continue; 
 
+                    $user = new User();
+                    $user->name = $data[0].' '.$data[2];
+                    $user->email = $data[9];
+                    $user->contact = $data[5];
+                    $user->password = $data[9];
+                    $user->type = '2';
+                    if($user->save()) {
+                        $detail = new Detail();
+                        $detail->user_id = $user->id;
+                        $detail->firstname = $data[0];
+                        $detail->middlename = $data[1];
+                        $detail->lastname = $data[2];
+                        $detail->date_of_birth = $data[3];
+                        $detail->gender = $data[4];
+                        $detail->contact_mobile = $data[5];
+                        $detail->contact_home = $data[6];
+                        $detail->contact_pager = $data[7];
+                        $detail->contact_fax = $data[8];
+                        $detail->email_personal = $data[9];
+                        $detail->address_permanent = $data[10];
+                        $detail->city_permanent = $data[11];
+                        $detail->state_permanent = $data[12];
+                        $detail->country_permanent = $data[13];
+                        $detail->retirement = $data[14];
+                        $detail->expertise_in = $data[15];
+                        $detail->save();
+                    }
+                }
+            }
+            fclose($handle);
+            return redirect('upload')->with(
+                        'uploded_success','Profiles successfully uploaded.'
+                    );
+        }
+        return redirect('upload');
     }
 }

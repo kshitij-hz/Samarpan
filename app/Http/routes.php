@@ -11,24 +11,38 @@ Route::get('admin', 'AdminController@index');
 Route::get('admin/senior_citizens', 'AdminController@seniorCitizens');
 Route::get('admin/profile_viewers', 'AdminController@profileViewers');
 Route::get('admin/departments', 'AdminController@departments');
-Route::get('admin/edit/{id}', 'AdminController@edit');
-Route::post('admin/update', 'AdminController@update');
+Route::get('admin/edit/{user}', 'AdminController@editSeniorCitizen');
+Route::get('admin/view/{user}', 'AdminController@show');
+Route::get('admin/cvdownload/{detail}', 'AdminController@download');
+Route::any('admin/update', 'AdminController@update');
 Route::get('admin/settings', 'AdminController@settings');
+
+/*The routes for verification purposes*/
+Route::get('verification/', 'VerificationController@verification' );
+Route::get('confirmation/{id}/{code}', 'VerificationController@confirmation');
 
 /*The routes for other users*/
 Route::get('profile', 'UserController@index');
 Route::get('profile/view', 'UserController@profile');
+Route::get('profile/verify_email', 'UserController@startVerification');
 Route::get('profile/work_experience', 'UserController@workExperience');
 Route::get('profile/edit', 'UserController@edit');
 Route::get('view_senior_citizens', 'UserController@view');
 Route::get('view_senior_citizen/{user}', 'UserController@show');
 Route::get('cvdownload/{detail}', 'UserController@download');
 Route::get('upload', 'UserController@uploadView');
+Route::post('profile/add_experience', 'UserController@storeExperience');
 Route::any('profile/new', 'UserController@store');
 Route::any('profile/update', 'UserController@update');
-Route::post('profile/add_experience', 'UserController@storeExperience');
-Route::post('profile/bulk', 'UserController@bulkUpload');
+Route::any('profile/bulk', 'UserController@bulkUpload');
 
+/*The routes for finding autocomplete fields*/
+Route::get('search/ministry', 'SearchController@getMinistry');
+Route::get('search/department', 'SearchController@getDepartment');
+Route::get('search/company', 'SearchController@getCompany');
+Route::get('search/location', 'SearchController@getLocation');
+Route::get('search/role', 'SearchController@getRole');
+Route::get('search/position', 'SearchController@getPosition');
 
 /*The route for errors*/
 Route::get('accessError', function() {

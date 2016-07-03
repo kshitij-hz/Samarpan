@@ -120,4 +120,25 @@ class AdminController extends Controller
 		$detail->update($request->all());
 		return redirect('admin');
 	}
+
+    /**
+    * open the view page to edit details of a user
+    *
+    * @param User $user
+    * @return view
+    **/
+    public function show(User $user) {
+        return view('admin.show', compact('user'));
+    }
+
+    /**
+     * download cv for a user if it exists
+     *
+     * @param Detail detail
+     * @return download pdf
+     **/
+    public function download(Detail $detail) {
+        $cv = $detail->cv;
+        return response()->download(public_path('cv\\'.$cv));
+    }
 }
