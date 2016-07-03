@@ -64,9 +64,10 @@
                                   <p>{{$senior->address_current}} {{$senior->city_current}}</p>
                                </div>
                             </div>
-                            <a href="{{ url('view_senior_citizen', $senior->user_id) }}" class="btn btn-primary pull-xs-right">Full Profile</a>
+                            <a href="{{url('admin/senior_citizen/edit', '$senior->user_id')}}" class="btn btn-primary pull-xs-right">Edit</a>
+                            <a href="{{url('admin/view', '$senior->user_id')}}" class="btn btn-primary pull-xs-right">Full Profile</a>
                             @if($senior->cv)
-                            <a href="{{ url('cvdownload', $senior->id) }}" class="btn btn-primary pull-xs-right">Resume</a>
+                            <a href="{{ url('admin/cvdownload', $senior->id) }}" class="btn btn-primary pull-xs-right">Resume</a>
                             @endif
                         </div>
                         <!--/.Card content-->

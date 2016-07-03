@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'contact', 'type'
+        'name', 'email', 'password', 'contact', 'type', 'verify'
     ];
 
     /**
@@ -24,9 +24,32 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * the profile viewers scope
+     *
+     * @return query
+     **/
+    public function scopeViewers($query) {
+        return $query->where('type', '=', '1');
+    }
+
+    /**
+     * the senior citizens scope
+     *
+     * @return query
+     **/
     public function scopeSeniors($query) {
         return $query->where('type', '=', '2');
-    }    
+    }
+
+    /**
+     * the departments scope
+     *
+     * @return query
+     **/
+    public function scopeDepartments($query) {
+        return $query->where('type', '=', '3');
+    }
 
     /**
      * a user has a detail

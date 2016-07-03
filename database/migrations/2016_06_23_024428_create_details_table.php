@@ -19,10 +19,11 @@ class CreateDetailsTable extends Migration
             $table->string('middlename')->nullable();
             $table->string('lastname')->nullable();
             $table->date('date_of_birth')->nullable();
+            $table->string('gender')->nullable();
             $table->string('contact_mobile')->nullable();
             $table->string('contact_home')->nullable();
             $table->string('contact_work')->nullable();
-            $table->string('contact_page')->nullable();
+            $table->string('contact_pager')->nullable();
             $table->string('contact_fax')->nullable();
             $table->string('contact_other')->nullable();
             $table->string('email_personal')->nullable();
@@ -48,7 +49,7 @@ class CreateDetailsTable extends Migration
             $table->string('description')->nullable();
             $table->string('goals')->nullable();
             $table->string('interests')->nullable();
-            $table->string('experise_in')->nullable();
+            $table->string('expertise_in')->nullable();
             $table->string('fb')->nullable();
             $table->string('google')->nullable();
             $table->string('linkedin')->nullable();

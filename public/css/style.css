@@ -5,6 +5,164 @@ Template 2076 Zentro
 http://www.tooplate.com/view/2076-zentro
 
 */
+/*[type=radio]:checked, [type=radio]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+    visibility: hidden;
+}
+[type=radio]:not(:checked)+label:before {
+    border-radius: 50%;
+    border: 2px solid #5a5a5a;
+}
+[type="radio"]+label:after, [type="radio"]+label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 4px;
+    width: 16px;
+    height: 16px;
+    z-index: 0;
+    -webkit-transition: .28s ease;
+    -moz-transition: .28s ease;
+    -o-transition: .28s ease;
+    -ms-transition: .28s ease;
+    transition: .28s ease;
+}*/
+form>.form-inline{
+  margin:1em 0em 2em 0em;
+}
+.form-group>label{
+  color: #373a3c;
+}
+input[type="radio"] {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+}
+[type=radio]:checked+label, [type=radio]:not(:checked)+label, [type=checkbox]+label {
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: pointer;
+    font-size: 1rem;
+    padding-left: 35px;
+    display: inline-block;
+    line-height: 25px;
+    position: relative;
+    height: 25px;
+    transition: .28s ease;
+}
+.file-field .btn {
+    float: left;
+    line-height: 3rem;
+}
+.file-field .file-path-wrapper {
+    overflow: hidden;
+    padding-left: 10px;
+    height: 2.5rem;
+}
+.file-field {
+    position: relative;
+    height: 6em;
+}
+.btn-floating, .card .card-reveal .card-title, .file-field span, input[type="range"], input[type="range"]+.thumb {
+    cursor: pointer;
+}
+.file-field input.file-path {
+    width: 100%;
+    height: 2.1rem;
+}
+.file-field input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 1px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+label {
+    font-size: 1rem;
+    margin-bottom: 0px;
+    color:blue;
+    /*font-weight: bold;*/
+    }
+    .form-control{
+      padding-top: 0px;
+      margin-top: 0px;
+    }
+    select {
+          display: block;
+          background-color: transparent;
+          border: none;
+          border-bottom: 1px solid #ccc;
+          border-radius: 0;
+          outline: 0;
+          height: 2.1rem;
+          width: 100%;
+          font-size: 1rem;
+          box-shadow: none;
+          -webkit-box-sizing: content-box;
+          -moz-box-sizing: content-box;
+          box-sizing: content-box;
+          transition: all .3s;
+          margin-bottom: 1.5em;
+    }
+    .btn-fb {
+        background-color: #3b5998;
+    }
+    .btn-gplus {
+        background-color: #dd4b39;
+    }
+    .btn-tw{
+        background-color: #6cb7f0;
+    }
+    .navbar-nav .nav-item {
+    padding-right: 2rem;
+    }
+    .fa{
+      padding-right:3%; 
+    }
+    .navbar-brand{
+      font-family:'Conv_SAMARN__',Sans-Serif;
+    }
+    .btn-danger:active,.btn-danger:focus,.btn-danger:active{
+      background-color: #fff;
+    }
+    .navbar-dark .navbar-nav .nav-link {
+        color: rgba(255,255,255,.95);
+    }
+    #contact .form-control{
+      padding-left:10px;
+    }
+    .text-center {
+        text-align: center;
+    }
+    .pull-right{
+      float:right;
+    }
+/*    #team .col-md-4 {
+        padding-top: 17px;
+    }*/
+    .title-style{
+      padding: 17px 20px;
+      background-color: #F44336;
+      color:#fff;
+    }
+    .content{
+      padding:5% 5%;
+    }
+    .login{
+      padding:11% 5%;
+    }
+
 @media (min-width: 768px)
 .navbar>.container .navbar-brand{
     margin-left: -15px;
@@ -168,9 +326,6 @@ hr {
 }
 
 /* team section */
-#team {
-  text-align: center;
-}
 #team h3 {
   font-size: 18px;
   line-height: 4px;
@@ -179,9 +334,7 @@ hr {
   color: #5C5C5C;
   padding-top: 24px;
 }
-#team .col-md-4 {
- padding-top: 42px;
-}
+
 
 /* menu section */
 #menu h4 {
