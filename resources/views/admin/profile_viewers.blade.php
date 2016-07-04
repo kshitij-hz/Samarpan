@@ -1,16 +1,33 @@
 @extends('layouts.default')
 @section('content')
-<section id="contact" class="parallax-section">
+<section id="team" class="parallax-section">
 	<div class="container">
 	<div class="row">
         <div class="col-md-1"></div>
 	    <div class="col-md-10 col-sm-12 text-center">
-		<h1 class="heading">Results : Profile Viewers</h1>
-		
-        @if($profileViewers)
+        <h1 class="heading">Profile Viewers</h1>
+        @if($result == 0 || $result == 2)
+            <div class="card">
+                <div class="content">
+                    <form action="{{url('admin/search_viewers')}}" method="GET">
+                        {{csrf_field()}}
+                        <div class="md-form">
+                            <input type="text" name="firstname" placeholder="Search Company...." id="viewercompany">
+                        </div>
+                        <div class="md-form col-md-4 pull-right">
+                            <button type="submit" class="btn-secondary-outline waves-effect form-control" id="submit">Search <i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        @endif
+        @if($profileViewers && ($result == 1 || $result == 2))
         @foreach($profileViewers as $profileViewer)
+        @if(count($profileViewers) == 1)
+            <?php $viewer = $profileViewer; ?>
+        @else
         <?php $viewer = $profileViewer[0]; ?>
-        
+        @endif
             {{-- card : begin --}}
             <div class="card">
                 <div class="row">
@@ -64,8 +81,8 @@
                                   <p>{{$viewer->expertise_in}}</p>
                                </div>
                             </div>
-                            <a href="#" class="btn btn-primary pull-xs-right">Edit</a>
-                            <a href="#" class="btn btn-primary pull-xs-right">Full Profile</a>
+                            <a href="{{url('admin/edit', $viewer->user_id)}}" class="btn btn-primary pull-xs-right">Edit</a>
+                            <a href="{{url('admin/view', $viewer->user_id)}}" class="btn btn-primary pull-xs-right">Full Profile</a>
                         </div>
                         <!--/.Card content-->
                     </div>
@@ -74,8 +91,9 @@
             {{-- card : end --}}
             
         @endforeach
+            <div class="pagination">{{ $profileViewers->appends(Request::all())->links() }}</div>
         @endif
-        	<div class="pagination">{{ $profileViewers->links() }}</div>
+        	
         </div>
         <div class="col-md-1"></div>    
     </div>

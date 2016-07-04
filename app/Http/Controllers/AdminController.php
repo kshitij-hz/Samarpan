@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\WorkExperience;
+use App\Detail;
 use Auth;
 use App\Http\Requests;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Input;
+use App\Http\Requests\DetailRequest;
 
 class AdminController extends Controller
 {
     public function __construct() {
     	$this->middleware('auth');
-    	if(Auth::user()->type != 0) {
+    	if(Auth::user() && Auth::user()->type != 0) {
     		return redirect('accessError');
     	}
     }
@@ -35,11 +38,28 @@ class AdminController extends Controller
      *
      * @return view with pagination
      **/
-    public function seniorCitizens() {
-    	$seniorCitizens = User::seniors()->get();
+    public function searchCitizens() {
+        return view('admin.search_citizens', compact('seniorCitizens'));
+    }
+
+    /**
+     * view the list of filtered senior citizens
+     *
+     * @param Request request
+     * @return view with pagination
+     **/
+    public function seniorCitizens(Request $request) {
+        $data = $request->all();
+        unset($data['_token']);
+        unset($data['page']);
+        if(!count($data))
+            return redirect('admin/search_citizens');
+        $data = array_filter($data);
+        $query = WorkExperience::where($data);
+        $seniorCitizens = $query->get();
         $seniorCitizenDetails = array();
         foreach($seniorCitizens as $seniorCitizen) {
-            $details = $seniorCitizen->detail()->get();
+            $details = $seniorCitizen->user->detail()->get();
             if(count($details) != 0)    
                 array_push($seniorCitizenDetails, $details);
         }
@@ -59,6 +79,7 @@ class AdminController extends Controller
      * @return view with pagination
      **/
     public function profileViewers() {
+        $result = 1;
     	$profileViewers = User::viewers()->get();
         $profileViewerDetails = array();
         foreach($profileViewers as $profileViewer) {
@@ -72,7 +93,30 @@ class AdminController extends Controller
         $pagedData = array_slice($profileViewerDetails, $currentPage * $perPage, $perPage);
         $profileViewers = new LengthAwarePaginator($pagedData, $total, $perPage, $currentPage+1);
         $profileViewers->setPath(Input::getBasePath());
-        return view('admin.profile_viewers', compact('profileViewers'));
+        return view('admin.profile_viewers', compact('profileViewers', 'result'));
+    }
+
+    /**
+     * view the list of all filtered profile viewers
+     *
+     * @param Request request
+     * @return view with pagination
+     **/
+    public function searchViewers(Request $request) {
+        $data = $request->all();
+        unset($data['_token']);
+        unset($data['page']);
+        if(!count($data)){
+            $result = 0;
+            $profileViewers = array();
+            return view('admin.profile_viewers', compact('profileViewers', 'result'));
+        }
+        else {
+            $result = 2;
+            $profileViewers = Detail::where($data)->paginate(2);
+
+            return view('admin.profile_viewers', compact('profileViewers', 'result'));
+        }
     }
 
     /**
@@ -105,8 +149,21 @@ class AdminController extends Controller
     * @param Detail detail
     * @return view
     **/
-	public function edit(Detail $detail) {
-		return view('admin.edit', compact('detail'));
+	public function edit(User $user) {
+		// return view('admin_edit', compact('detail'));
+        $type = $user->type;
+        $details = $user->detail()->get()[0];
+        switch($type) {
+            case '1':
+                return view('admin.profile_viewer_edit', compact('user', 'details'));
+                break;
+            case '2':
+                return view('admin.senior_citizen_edit', compact('user', 'details'));
+                break;
+            case '3':
+                return view('admin.department_edit', compact('user', 'details'));
+                break;
+        }
 	}
 
 	/**
@@ -116,8 +173,11 @@ class AdminController extends Controller
     * @param DetailRequest request
     * @return admin home page
     **/
-	public function update(Detail $detail, DetailRequest $request) {
-		$detail->update($request->all());
+	public function update(User $user, DetailRequest $request) {
+        $data = $request->all();
+        $data['user_id'] = $user->id;
+        $user->update($data);
+		$user->detail->update($data);
 		return redirect('admin');
 	}
 
@@ -128,7 +188,20 @@ class AdminController extends Controller
     * @return view
     **/
     public function show(User $user) {
-        return view('admin.show', compact('user'));
+        $type = $user->type;
+        $detail = $user->detail()->get()[0];
+        switch($type) {
+            case '1':
+                return view('admin.profile_viewer_profile', compact('detail'));
+                break;
+            case '2':
+                $work_experiences = $user->work_experiences()->get();
+                return view('admin.senior_citizen_profile', compact('detail', 'work_experiences'));
+                break;
+            case '3':
+                return view('admin.department_profile', compact('detail'));
+                break;
+        }
     }
 
     /**

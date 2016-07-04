@@ -9,7 +9,14 @@
 						<h1 class="heading">Edit Profile</h1>
 					</div>	
 					<div class="content">
-						<form action="profile/new" method="POST" files="true" enctype="multipart/form-data">
+						@if($errors->any())
+							<ul class="alert alert-danger">
+								@foreach($errors->all() as $error)
+									<li>{{$error}}</li>
+								@endforeach
+							</ul>
+						@endif
+						<form action="profile/update" method="POST" files="true" enctype="multipart/form-data">
 							{{csrf_field()}}
 							<label>Department Full Name:</label>
 					        <div class="md-form">

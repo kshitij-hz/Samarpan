@@ -87,26 +87,41 @@ class UserController extends Controller
     }
 
     /**
-     * view of senior citizen as shown to profile viewer
+     * view the filter to search citizens
      *
-     * @return view page with details
      *
+     * @return view with pagination
      **/
-    public function view() {
-        if(Auth::user()->type != 1)
-            return redirect('accessError');
+    public function searchCitizens() {
+        return view('profile_viewer.search_citizens', compact('seniorCitizens'));
+    }
 
-        $seniorCitizens = User::seniors()->get();
+    /**
+     * view the list of filtered senior citizens
+     *
+     * @param Request request
+     * @return view with pagination
+     **/
+    public function view(Request $request) {
+        $data = $request->all();
+        unset($data['_token']);
+        unset($data['page']);
+        if(!count($data))
+            return redirect('search_senior_citizens');
+        $data = array_filter($data);
+        $query = WorkExperience::where($data);
+        $seniorCitizens = $query->get();
         $seniorCitizenDetails = array();
         foreach($seniorCitizens as $seniorCitizen) {
-            $details = $seniorCitizen->detail()->get();
+            $details = $seniorCitizen->user->detail()->get();
             if(count($details) != 0)    
                 array_push($seniorCitizenDetails, $details);
         }
         $perPage = 2;
         $currentPage = Input::get('page', 1) - 1;
+        $total = count($seniorCitizenDetails);
         $pagedData = array_slice($seniorCitizenDetails, $currentPage * $perPage, $perPage);
-        $seniorCitizens = new LengthAwarePaginator($pagedData, count($seniorCitizenDetails), $perPage, $currentPage+1);
+        $seniorCitizens = new LengthAwarePaginator($pagedData, $total, $perPage, $currentPage+1);
         $seniorCitizens->setPath(Input::getBasePath());
         return view('profile_viewer.view', compact('seniorCitizens'));
     }
@@ -118,10 +133,10 @@ class UserController extends Controller
      * @return view of user
      **/
     public function show(User $user) {
-        $details = $user->detail()->get();
+        $detail = $user->detail()->get()[0];
         $work_experiences = $user->work_experiences()->get();
 
-        return view('profile_viewer.senior_citizen', compact('details', 'work_experiences'));
+        return view('profile_viewer.senior_citizen', compact('detail', 'work_experiences'));
     }
 
     /**

@@ -18,18 +18,38 @@
 				<h1 align="center" class="heading">Work Experiences</h1>
 				@foreach($work_experiences as $experience)
 				<div class="card">
-					<p>Sector of Employement: {{$experience->sector}}</p>
-					<p>Category: {{$experience->category}}</p>
-					<p>Ministry: {{$experience->ministry}}</p>
-					<p>Department: {{$experience->department}}</p>
-					<p>Organization/Society/Company: {{$experience->company}}</p>
-					<p>Location: {{$experience->location}}</p>
-					<p>Grade Rank: {{$experience->rank}}</p>
-					<p>Role in Organization: {{$experience->role}}</p>
-					<p>Position Held: {{$experience->position}}</p>
-					<p>Started Working: {{$experience->from->diffForHumans()}}</p>
-					<p>Ended Working: {{$experience->to->diffForHumans()}}</p>
-					<p>Description: {{$experience->description}}</p>
+					<table class="table">
+					  <thead>
+					    <tr>
+					      <td colspan="2" class="text-center"><strong>Organization/Society/Company:</strong> {{$experience->company}}</td>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+							<td><strong>Started Working:</strong> {{$experience->from->diffForHumans()}}</td>
+					      	<td><strong>Ended Working:</strong> {{$experience->to->diffForHumans()}}</td>
+					    </tr>
+					    <tr>
+					    	<td><strong>Sector of Employement:</strong> {{$experience->sector}}</td>
+					    	<td><strong>Category:</strong> {{$experience->category}}</td>
+					    </tr>
+					    <tr>
+					    	<td><strong>Ministry:</strong> {{$experience->ministry}}</td>
+					    	<td><strong>Department:</strong> {{$experience->department}}</td>
+					    </tr>
+					    <tr>
+					    	<td><strong>Role in Organization:</strong> {{$experience->role}}</td>
+					    	<td><strong>Grade Rank:</strong> {{$experience->rank}}</td>
+					    </tr>
+					    <tr>
+					    	<td><strong>Position Held:</strong> {{$experience->position}}</td>
+					    	<td><strong>Location:</strong> {{$experience->location}}</td>
+					    </tr>
+					    <tr>
+					    	<td colspan="2"><strong>Description:</strong> {{$experience->description}}</td>
+					    </tr>
+					  </tbody>
+					</table>
 				</div>
 				@endforeach
 				<p>
@@ -53,40 +73,6 @@
 
 							<div id="inPublic">
 							</div>
-
-							<!-- <label>Enter Org/Society/Company:</label> -->
-							<!-- <div class="md-form">
-								<input name="company" type="text" class="form-control" placeholder="Enter organization/Society/Company name" id="company">
-							</div>
-							<div class="md-form">
-								<input name="location" type="text" class="form-control" placeholder="Enter Location" id="location">
-							</div>
-							<div class="md-form">
-								<select name="rank" id="rank" class="mdb-select">
-									<option value="" disabled selected>Choose Grade Rank</option>
-									<option value="Group A">Group A or Grade Rank 1</option>
-									<option value="Group A">Group B or Grade Rank 2</option>
-									<option value="Group A">Group C or Grade Rank 3</option>
-									<option value="Group A">Group D or Grade Rank 4</option>
-								</select>
-							</div>
-							<div class="md-form">
-								<input name="position" type="text" class="form-control" placeholder="Enter your Position" id="position">
-							</div>
-							<div class="md-form">
-								<input name="role" type="text" class="form-control" placeholder="Enter your Role" id="role">
-							</div>
-							<div class="md-form">
-								<div class="col-md-3"><label>Start date: </label></div>
-								<div class="col-md-9"><input name="from" type="date" class="form-control" placeholder="Start date"></div>
-							</div>
-							<div class="md-form">
-								<div class="col-md-3"><label>End date: </label></div>
-								<div class="col-md-9"><input name="to" type="date" class="form-control" placeholder="End date"></div>
-							</div>
-							<div class="md-form">
-								<textarea name="description" rows="1" class="md-textarea form-control" placeholder="Enter Description"></textarea>
-							</div> -->
 							<div class="md-form col-md-4 pull-right">
 								<input name="submit" type="submit" class="btn-secondary-outline waves-effect form-control" id="submit" value="SUBMIT">
 							</div>

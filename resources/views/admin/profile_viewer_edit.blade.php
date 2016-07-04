@@ -6,7 +6,7 @@
 			<div class="col-md-offset-2 col-md-8 col-sm-12">
 				<div class="card">
 					<div class="title-style text-center">
-						<h1 class="heading">Edit Profile</h1>
+						<h1 class="heading">Edit Profile Viewer Details</h1>
 					</div>	
 					<div class="content">
 						@if($errors->any())
@@ -16,7 +16,7 @@
 								@endforeach
 							</ul>
 						@endif
-						<form action="profile/update" method="POST" files="true" enctype="multipart/form-data">
+						<form action="{{url('admin/update', $user->id)}}" method="POST" files="true" enctype="multipart/form-data">
 							{{csrf_field()}}
 							<label>Company Full Name:</label>
 					        <div class="md-form">
@@ -28,7 +28,7 @@
 							</div>
 							<label>Primary Contact No:</label>
 							<div class="md-form">
-								<input name="contact_mobile" type="number" class="form-control" id="mobNumber" placeholder="Contact Number" disabled value="{{Auth::user()->contact}}">
+								<input name="contact" type="number" class="form-control" id="mobNumber" placeholder="Contact Number" value="{{$user->contact}}">
 							</div>
 							<label>Contact Work:</label>
 							<div class="md-form">
@@ -48,11 +48,11 @@
 							</div>
 							<label>Primary Email Address:</label>
 							<div class="md-form">
-								<input name="email_personal" type="email" class="form-control" id="email" placeholder="Primary Email Address" value="{{Auth::user()->email}}" disabled>
+								<input name="email" type="email" class="form-control" id="email" placeholder="Primary Email Address" value="{{$user->email}}">
 							</div>
-							<label>Work Email Address:</label>
+							<label>Office Email Address:</label>
 							<div class="md-form">
-								<input name="email_work" type="email" class="form-control" id="email" placeholder="Work Email Address" value="{{$details->email_work}}" disabled>
+								<input name="email_work" type="email" class="form-control" id="email" placeholder="Work Email Address" value="{{$details->email_work}}" >
 							</div>
 							<label>Other Email Address:</label>
 							<div class="md-form">

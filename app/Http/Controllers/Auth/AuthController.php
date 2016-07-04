@@ -35,14 +35,14 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $registerView = '/#register';
+    protected $registerView = 'pages.home';
 
     /**
      * Where to redirect users for login
      *
      * @var string
      */
-    protected $loginView = '/#login';
+    protected $loginView = 'pages.home';
 
     /**
      * Create a new authentication controller instance.
@@ -64,9 +64,10 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
+            'contact' => 'required|min:10|max:10',
             'email' => 'required|email|max:255|unique:users',
-            'contact' => 'required|max:10',
             'password' => 'required|min:6|confirmed',
+            'type' => 'required',
         ]);
     }
 
@@ -83,7 +84,7 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'contact' => $data['contact'],
-            'password' => bcrypt($data['password']),
+            'password' => bcrypt($data['password'])
         ]);
     }
 }

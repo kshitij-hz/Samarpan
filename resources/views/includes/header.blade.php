@@ -35,10 +35,14 @@
                 @if(!Auth::guest())
                 @if(Auth::user()->type == '0')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('admin/senior_citizens') }}">Senior Citizens</a>
+                        <a class="nav-link" href="{{ url('admin/search_citizens') }}">Senior Citizens</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('admin/profile_viewers') }}">Profile Viewers</a>
+                    <li class="nav-item dropdown right">
+                        <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile Viewers</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <a class="dropdown-item" href="{{ url('admin/profile_viewers') }}">All</a>
+                            <a class="dropdown-item" href="{{ url('admin/search_viewers') }}">Search by Company Name</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('admin/departments') }}">Departments</a>
@@ -64,7 +68,7 @@
 
                 @if(Auth::user()->type == '1')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('view_senior_citizens') }}">View Senior Citizens</a>
+                        <a class="nav-link" href="{{ url('search_senior_citizens') }}">View Senior Citizens</a>
                     </li>
                 @endif
 

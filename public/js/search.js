@@ -1,13 +1,13 @@
-$('#ministry').click(function() {
+$('#inPublic').on('click', '#ministry', function(){
     $('#ministry').autocomplete({
-        source: "url('search/ministry')",
+        source: "/search/ministry",
         minLength: 1,
         select: function(event, ui) {
             $('#ministry').val(ui.item.value);
         }
     });
 });
-$('#department').click(function(){
+$('#inPublic').on('click', '#department', function(){
     $('#department').autocomplete({
         source: "/search/department",
         minLength: 1,
@@ -16,7 +16,7 @@ $('#department').click(function(){
         }
     });
 });
-$('#company').click(function(){
+$('#inPublic').on('click', '#company', function(){
     $('#company').autocomplete({
         source: "/search/company",
         minLength: 1,
@@ -25,7 +25,7 @@ $('#company').click(function(){
         }
     });
 });
-$('#location').click(function(){
+$('#inPublic').on('click', '#location', function(){
     $('#location').autocomplete({
         source: "/search/location",
         minLength: 1,
@@ -34,7 +34,7 @@ $('#location').click(function(){
         }
     });
 });
-$('#role').click(function(){
+$('#inPublic').on('click', '#role', function(){
     $('#role').autocomplete({
         source: "/search/role",
         minLength: 1,
@@ -43,12 +43,21 @@ $('#role').click(function(){
         }
     });
 });
-$('#position').click(function(){
+$('#inPublic').on('click', '#position', function(){
     $('#position').autocomplete({
         source: "/search/position",
         minLength: 1,
         select: function(event, ui) {
             $('#position').val(ui.item.value);
+        }
+    });
+});
+$('#viewercompany').click(function(){
+    $('#viewercompany').autocomplete({
+        source: "/search/firstnameviewer",
+        minLength: 1,
+        select: function(event, ui) {
+            $('#viewercompany').val(ui.item.value);
         }
     });
 });

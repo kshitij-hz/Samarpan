@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use DB;
+use App\User;
+use App\Detail;
 
 class SearchController extends Controller
 {
@@ -62,7 +64,7 @@ class SearchController extends Controller
      *
      * @return Response
      **/
-    public function getCompany() {
+    public function getLocation() {
         $term = Input::get('term');
         $results = array();
         $queries = DB::table('work_experiences')->where('location', 'LIKE', '%'.$term.'%')->get();
@@ -101,6 +103,25 @@ class SearchController extends Controller
 
         foreach($queries as $query) {
             array_push($results, ['id' => $query->id, 'value' => $query->position]);
+        }
+    return response()->json($results);
+    }
+
+    /**
+     * retrieve all the related firstnames
+     *
+     * @return Response
+     **/
+    public function getFirstnameViewer() {
+        $term = Input::get('term');
+        $results = array();
+        $queries = Detail::where('firstname', 'LIKE', '%'.$term.'%')->get();
+        // $users = User::viewers()->detail()->where('firstname', 'LIKE', '%'.$term.'%')->get();
+        // $queries = DB::table('details')->where('firstname', 'LIKE', '%'.$term.'%')->get();
+
+        foreach($queries as $query) {
+            if($query->user->type == '1')
+                array_push($results, ['id' => $query->id, 'value' => $query->firstname]);
         }
     return response()->json($results);
     }

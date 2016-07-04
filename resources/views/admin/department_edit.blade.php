@@ -16,9 +16,9 @@
 								@endforeach
 							</ul>
 						@endif
-						<form action="profile/update" method="POST" files="true" enctype="multipart/form-data">
+						<form action="{{url('admin/update', $user->id)}}" method="POST" files="true" enctype="multipart/form-data">
 							{{csrf_field()}}
-							<label>Company Full Name:</label>
+							<label>Department Full Name:</label>
 					        <div class="md-form">
 				                <input type="text" id="firstname" name="firstname" class="form-control" placeholder="Full Name" value="{{$details->firstname}}">
 						    </div>	
@@ -28,9 +28,9 @@
 							</div>
 							<label>Primary Contact No:</label>
 							<div class="md-form">
-								<input name="contact_mobile" type="number" class="form-control" id="mobNumber" placeholder="Contact Number" disabled value="{{Auth::user()->contact}}">
+								<input name="contact" type="number" class="form-control" id="mobNumber" placeholder="Contact Number" disabled value="{{$user->contact}}">
 							</div>
-							<label>Contact Work:</label>
+							<label>Contact Office:</label>
 							<div class="md-form">
 								<input name="contact_work" type="number" class="form-control" id="mobNumber" placeholder="Work's Number" value="{{$details->contact_work}}">
 							</div>
@@ -48,11 +48,11 @@
 							</div>
 							<label>Primary Email Address:</label>
 							<div class="md-form">
-								<input name="email_personal" type="email" class="form-control" id="email" placeholder="Primary Email Address" value="{{Auth::user()->email}}" disabled>
+								<input name="email" type="email" class="form-control" id="email" placeholder="Primary Email Address" value="{{$user->email}}">
 							</div>
-							<label>Work Email Address:</label>
+							<label>Office Email Address:</label>
 							<div class="md-form">
-								<input name="email_work" type="email" class="form-control" id="email" placeholder="Work Email Address" value="{{$details->email_work}}" disabled>
+								<input name="email_work" type="email" class="form-control" id="email" placeholder="Work Email Address" value="{{$details->email_work}}" >
 							</div>
 							<label>Other Email Address:</label>
 							<div class="md-form">
@@ -126,27 +126,11 @@
 							<div class="md-form">
 								<input type="number" name="members" class="form-control" placeholder="No. of Members" value="{{$details->members}}">
 							</div>
-							<label>Facebook Profile link:</label>
-							<div class="md-form">
-								<input name="fb" type="text" class="form-control" placeholder="fb Profile link" value="{{$details->fb}}">
-							</div>
-							<label>Google+ Profile link:</label>
-							<div class="md-form">
-								<input name="google" type="text" class="form-control" placeholder="Google+ Profile link:" value="{{$details->google}}">
-							</div>
-							<label>LinkedIn Profile link:</label>
-							<div class="md-form">
-								<input name="linkedin" type="text" class="form-control" placeholder="LinkedIn Profile link" value="{{$details->linkedin}}">
-							</div>
-							<label>Skype ID:</label>
-							<div class="md-form">
-								<input name="skype" type="text" class="form-control" placeholder="Skype ID" value="{{$details->skype}}">
-							</div>
 							<label>Website link:</label>
 							<div class="md-form">
 								<input name="website" type="text" class="form-control" placeholder="Website link" value="{{$details->website}}">
 							</div>
-							<label>Update Company's logo:</label>
+							<label>Update Department's logo:</label>
 							<div class="file-field">
 						        <div class="btn btn-primary">
 						            <span>Choose file</span>

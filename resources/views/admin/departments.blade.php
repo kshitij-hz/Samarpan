@@ -64,8 +64,8 @@
                                   <p>{{$department->expertise_in}}</p>
                                </div>
                             </div>
-                            <a href="#" class="btn btn-primary pull-xs-right">Edit</a>
-                            <a href="#" class="btn btn-primary pull-xs-right">Full Profile</a>
+                            <a href="{{url('admin/edit', $department->user_id)}}" class="btn btn-primary pull-xs-right">Edit</a>
+                            <a href="{{url('admin/view', $department->user_id)}}" class="btn btn-primary pull-xs-right">Full Profile</a>
                         </div>
                         <!--/.Card content-->
                     </div>

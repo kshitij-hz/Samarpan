@@ -9,7 +9,7 @@
 						<h1 class="heading">Edit Profile</h1>
 					</div>	
 					<div class="content">
-						<form action="profile/update" method="POST" enctype="multipart/form-data" files="true">
+						<form action="{{url('admin/update', $user->id)}}" method="POST" enctype="multipart/form-data" files="true">
 							{{csrf_field()}}
 							<label>Full Name:</label>
 							<div class="row">
@@ -107,7 +107,7 @@
 
 							<label>Primary Contact No:</label>
 							<div class="md-form">
-								<input name="contact_mobile" type="number" class="form-control" id="mobNumber" placeholder="Contact Number" disabled value="{{Auth::user()->contact}}">
+								<input name="contact" type="number" class="form-control" id="mobNumber" placeholder="Contact Number" disabled value="{{$user->contact}}">
 							</div>
 							<label>Contact Home:</label>
 							<div class="md-form">
@@ -147,7 +147,7 @@
 							</div>
 							<label>Personal Email Address:</label>
 							<div class="md-form">
-								<input name="email_personal" type="email" class="form-control" id="email" placeholder="Personal Email Address" value="{{Auth::user()->email}}" disabled>
+								<input name="email" type="email" class="form-control" id="email" placeholder="Personal Email Address" value="{{$user->email}}" disabled>
 								@if ($errors->has('email_personal'))
 		                            <span class="help-block">
 		                                <strong>{{ $errors->first('email_personal') }}</strong>
