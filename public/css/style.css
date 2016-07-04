@@ -206,6 +206,13 @@ hr {
 	padding-top: 100px;
 	padding-bottom: 100px;
 }
+
+#account {
+  background: url('../images/home-bg.jpg') 50% 0 repeat-y fixed;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
 #menu, #contact {
   background: #f0f0f0;
 }
@@ -331,6 +338,16 @@ hr {
   line-height: 4px;
 }
 #team h4 {
+  color: #5C5C5C;
+  padding-top: 24px;
+}
+
+/*account section*/
+#account h3 {
+  font-size: 18px;
+  line-height: 4px;
+}
+#account h4 {
   color: #5C5C5C;
   padding-top: 24px;
 }

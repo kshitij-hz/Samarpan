@@ -1,12 +1,12 @@
 @extends('layouts.default')
 @section('content')
-<section  id="team" class="parallax-section" style="background:#f0f0f0;">
+<section id="account" class="parallax-section" >
 	<div class="container">
 		{{--  --}}
 		<div class="row">
 			<div class="col-md-offset-1 col-md-5 col-sm-12" id="register">
-				<div class="card">
-					<div class="title-style text-center">
+				<div class="card" style="background:rgba(255,255,255,0.74)">
+					<div class="title-style text-center" style="background:rgba(244,67,54,0.74)">
 						<h1 class="heading">Create Profile</h1>
 					</div>	
 					<div class="content">
@@ -77,9 +77,9 @@
 			</div>
 
 			<div class="col-md-offset-1 col-md-5 col-sm-12" id="login">
-				<div class="card text-center">
-					<div class="title-style">
-						<h1 class="heading">Login</h1>
+				<div class="card text-center" style="background:rgba(255,255,255,0.74)">
+					<div class="title-style" style="background:rgba(244,67,54,0.74)">
+						<h1 class="heading" >Login</h1>
 					</div>	
 					<div class="login">
 					<form action="login" method="post">
@@ -108,17 +108,18 @@
                                     </span>
                                 @endif
 						  	</div>
-                          <div class="md-form">
+							<div class="md-form">
 								<button type="submit" class="btn btn-primary"><i class="fa fa-btn fa-sign-in"></i> Login</button>
-						  </div>
+								<a class="btn btn-secondary" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+						  	</div>
 						</form>  
-						<span>...or login with</span><br><br>
+						<!-- <span>...or login with</span><br><br> -->
 						<!--Facebook-->
-						<button type="button" class="btn btn-fb"><i class="fa fa-facebook"></i></button>
+						<!-- <button type="button" class="btn btn-fb"><i class="fa fa-facebook"></i></button> -->
 						<!--Twitter-->
-						<button type="button" class="btn btn-tw"><i class="fa fa-twitter"></i></button>
+						<!-- <button type="button" class="btn btn-tw"><i class="fa fa-twitter"></i></button> -->
 						<!--Google +-->
-						<button type="button" class="btn btn-gplus"><i class="fa fa-google-plus"></i></button>
+						<!-- <button type="button" class="btn btn-gplus"><i class="fa fa-google-plus"></i></button> -->
 					</div>	
 				</div>
 			</div>
@@ -127,8 +128,7 @@
 	
 	</div>		
 </section>
-
-<section  id="home" class="parallax-section">
+<!-- <section  id="home" class="parallax-section">
 	<div class="container">
 	   	{{--  --}}
          	<div class="row">
@@ -140,7 +140,7 @@
 		</div>
 	   	{{--  --}}
 	</div>		
-</section>
+</section> -->
 
 <!-- contact section -->
 <section id="contact" class="parallax-section">

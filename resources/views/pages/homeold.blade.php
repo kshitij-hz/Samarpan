@@ -1,19 +1,8 @@
 @extends('layouts.default')
 @section('content')
-<section id="home" class="parallax-section">
+<section id="account" class="parallax-section" style="background-color:#ccc;">
 	<div class="container">
-		<div class="row">
-			<div class="col-md-12 col-sm-12">
-				<h1>SAMARPAN</h1><br>
-				<h4>because</h4>
-				<a class="btn btn-danger-outline">OLD IS GOLD</a>
-			</div>
-		</div>
-	</div>		
-</section>
-
-<section id="team" class="parallax-section">
-	<div class="container">
+		{{--  --}}
 		<div class="row">
 			<div class="col-md-offset-1 col-md-5 col-sm-12" id="register">
 				<div class="card">
@@ -23,16 +12,24 @@
 					<div class="content">
 						<form action="{{ url('/register') }}" method="post">
 						{{ csrf_field() }}
+						@if(!empty(old('register')))
+                          <?php $reg_email = old('email'); 
+                                $reg_email_color = $errors->has('email') ? ' has-error' : '';
+                                $reg_psswd_color = $errors->has('password') ? ' has-error' : '';
+                          ?>
+                        @else 
+                          <?php $reg_email = $reg_email_color = $reg_psswd_color = ''; ?> 
+                        @endif
 							<div class="md-form">
-								<select class="mdb-select" name="type">
+								<select class="mdb-select" name="type"  value="{{ old('type') }}" required>
 								    <option value="" disabled selected>Choose type of account</option>
-								    <option value="2">Senior Citizen</option>
-								    <option value="1">Profile Viewer</option>
-								    <option value="3">Department</option>
+								    <option value="2" @if (Input::old('type') == '2') selected="selected" @endif>Senior Citizen</option>
+								    <option value="1" @if (Input::old('type') == '1') selected="selected" @endif>Profile Viewer</option>
+								    <option value="3" @if (Input::old('type') == '3') selected="selected" @endif>Department</option>
 								</select>
 							</div>
 							<div class="md-form">
-								<input name="name" type="text" class="form-control" id="name" placeholder="Name">
+								<input name="name" type="text" class="form-control" id="name" placeholder="Name"  value="{{ old('name') }}" required>
 								@if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -40,15 +37,15 @@
                                 @endif
 							</div>
 							<div class="md-form">
-								<input name="email" type="email" class="form-control" id="email" placeholder="Email">
-								@if ($errors->has('email'))
+								<input name="email" type="email" class="form-control" id="email" placeholder="Email"  value="{{ $reg_email }}" required>
+								@if ($errors->has('email') && !empty(old('register')))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
 							</div>
 							<div class="md-form">
-								<input name="contact" type="number" class="form-control" placeholder="Contact Number">
+								<input name="contact" type="number" class="form-control" placeholder="Contact Number"  value="{{ old('contact') }}" required>
 								@if ($errors->has('contact'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('contact') }}</strong>
@@ -56,15 +53,15 @@
                                 @endif
 							</div>
 							<div class="md-form">
-								<input name="password" type="password" class="form-control" id="password" placeholder="Password">
-								@if ($errors->has('password'))
+								<input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
+								@if ($errors->has('password') && !empty(old('register')))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
 							</div>
 							<div class="md-form">
-								<input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
+								<input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
 								@if ($errors->has('password_confirmation'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
@@ -72,7 +69,7 @@
                                 @endif
 							</div>
 							<div class="md-form">
-								<button type="submit" class="btn btn-primary"><i class="fa fa-btn fa-user"></i> Register</button>
+								<button type="submit" class="btn btn-primary" name="register" value="register"><i class="fa fa-btn fa-user"></i> Register</button>
 							</div>
 						</form>
 					</div>	
@@ -85,16 +82,33 @@
 						<h1 class="heading">Login</h1>
 					</div>	
 					<div class="login">
-						<form action="login" method="post">
+					<form action="login" method="post">
 							{{csrf_field()}}
-							<div class="md-form">
-								<input name="email" type="email" class="form-control" id="email" placeholder="Email">
+							@if(empty(old('register')) && !empty(old('email')))
+	                          <?php $login_email = old('email'); 
+	                                $login_email_color = $errors->has('email') ? ' has-error' : '';
+	                                $login_psswd_color = $errors->has('password') ? ' has-error' : '';
+	                          ?>
+	                        @else 
+	                          <?php $login_email = $login_email_color = $login_psswd_color = ''; ?> 
+	                        @endif
+							<div class="form-group{{ $login_email_color }}">
+								<input name="email" type="email" class="form-control" id="email" placeholder="Email" value="{{ $login_email }}" required>
+								@if ($errors->has('email') && empty(old('register')) && !empty(old('email')))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
 							</div>
-							<div class="md-form">
-								<input name="password" type="password" class="form-control" id="password" placeholder="Password">
+							<div class="form-group{{  $login_psswd_color }}">
+								<input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
+								@if ($errors->has('password') && empty(old('register')) && !empty(old('email')))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
 						  	</div>
-
-						  <div class="md-form">
+                          <div class="md-form">
 								<button type="submit" class="btn btn-primary"><i class="fa fa-btn fa-sign-in"></i> Login</button>
 						  </div>
 						</form>  
@@ -109,6 +123,22 @@
 				</div>
 			</div>
 		</div>
+		{{--  --}}
+	
+	</div>		
+</section>
+
+<section  id="home" class="parallax-section">
+	<div class="container">
+	   	{{--  --}}
+         	<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<h1>SAMARPAN</h1><br>
+				<h4>because</h4>
+				<a class="btn btn-danger-outline">OLD IS GOLD</a>
+			</div>
+		</div>
+	   	{{--  --}}
 	</div>		
 </section>
 

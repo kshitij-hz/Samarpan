@@ -175,8 +175,8 @@ class UserController extends Controller
             'company' => 'required',
             'position' => 'required',
             'role' => 'required',
-            'from' => 'date',
-            'to' => 'date'
+            'from' => 'date|required',
+            'to' => 'date|required'
         ]);
         $newexperience = Auth::user()->work_experiences()->create($request->all());
         return redirect('profile');

@@ -1,12 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.default')
 
 <!-- Main Content -->
 @section('content')
+<section id="team" class="parallax-section">
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+        <div class="col-md-offset-2 col-md-8 col-sm-12">
+            <div class="card">
+            <div class="content">
+                <h1 class="heading">Reset Password</h1>
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -40,8 +42,10 @@
                         </div>
                     </form>
                 </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+</section>
 @endsection

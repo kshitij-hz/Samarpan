@@ -1,11 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.default')
 
 @section('content')
+<section id="team" class="parallax-section">
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+        <div class="col-md-8 col-md-offset-2 col-sm-12">
+            <div class="card">
+            <div class="content">
+                <h1 class="panel-heading">Reset Password</h1>
 
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
@@ -64,7 +66,9 @@
                     </form>
                 </div>
             </div>
+            </div>
         </div>
     </div>
 </div>
+</section>
 @endsection

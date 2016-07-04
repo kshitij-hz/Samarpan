@@ -25,10 +25,10 @@
                     </li>
                     <!--Search form--> 
                     <li class="nav-item">
-                        <a class="nav-link smoothScroll" href="#register">Don't Have Account?</a>
+                        <a class="nav-link smoothScroll" href="/">Don't Have Account?</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link smoothScroll" href="#login">Login</a>
+                        <a class="nav-link smoothScroll" href="/">Login</a>
                     </li>
                 @endif
 
