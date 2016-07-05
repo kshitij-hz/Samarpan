@@ -1,5 +1,21 @@
 @extends('layouts.default')
 @section('content')
+<script src="http://localhost:8000/js/jquery.min.js""></script>
+<script src="http://localhost:8000/js/mdb.min.js""></script>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		$("#alert-target").click(function () {
+	    	toastr["danger"]("")
+		});
+	});
+
+</script>
+@if($errors->any())
+		@foreach($errors->all() as $error)
+			<?php echo "<script type='text/javascript'>toastr['warning']('".$error."')</script>"; ?>
+		@endforeach
+@endif
 <section id="account" class="parallax-section" style="display:none;">
 	<div class="container">
 		{{--  --}}
@@ -74,7 +90,7 @@
                                 @endif
 							</div>
 							<div class="md-form">
-								<button type="submit" class="btn btn-primary" name="register" value="register"><i class="fa fa-btn fa-user"></i> Register</button>
+								<button type="submit" class="btn btn-primary" name="register" value="register" id="alert-target"><i class="fa fa-btn fa-user"></i> Register</button>
 								<a class="btn teal" aria-expanded="false" id="click2">Already Have an Account, Login here?</a>
 						  	</div>
 						</form>
@@ -115,7 +131,7 @@
                                 @endif
 						  	</div>
 							<div class="md-form">
-								<button type="submit" class="btn btn-primary"><i class="fa fa-btn fa-sign-in"></i> Login</button>
+								<button class="btn btn-primary" id="alert-target"><i class="fa fa-btn fa-sign-in"></i> Login</button>
 								<a class="btn btn-secondary" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
 						  	</div>
 						  	<div class="md-form">
