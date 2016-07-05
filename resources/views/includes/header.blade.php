@@ -65,7 +65,7 @@
                 @if(Auth::user()->type == '2')
                     @if(Auth::user()->verify == '0')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('profile/verify_email') }}">Verify Email</a>
+                        <a class="nav-link" href="{{ url('profile/verify_email') }}">Activate Account</a>
                     </li>
                     @endif                    
                     <li class="nav-item">
@@ -90,3 +90,12 @@
         <!--/.Collapse content-->
     </div>
 </nav>
+@if(Auth::user())
+    @if(!Auth::user()->verify)
+    <nav class="navbar navbar-dark orange">
+        <div class="container" align="center">
+            Account not activated. <a style="color:black;" href="{{url('profile/verify_email')}}">Click here to activate account</a>
+        </div>
+    </nav>
+    @endif
+@endif
