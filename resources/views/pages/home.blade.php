@@ -1,7 +1,5 @@
 @extends('layouts.default')
 @section('content')
-<script src="http://localhost:8000/js/jquery.min.js""></script>
-<script src="http://localhost:8000/js/mdb.min.js""></script>
 <script type="text/javascript">
 
 	$(document).ready(function(){

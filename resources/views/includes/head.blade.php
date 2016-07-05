@@ -16,6 +16,8 @@
 	<link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 	<link rel="stylesheet" href="{{ URL::asset('css/fonts.css') }}">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+	<script src="{{ URL::asset('js/jquery.min.js') }}""></script>
+	<script src="{{ URL::asset('js/mdb.min.js') }}""></script>
 
 	<style type="text/css">
 		.fa{
