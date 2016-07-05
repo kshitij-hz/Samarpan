@@ -1,14 +1,7 @@
 @extends('layouts.default')
 @section('content')
-<script type="text/javascript">
-
-	$(document).ready(function(){
-		$("#alert-target").click(function () {
-	    	toastr["danger"]("")
-		});
-	});
-
-</script>
+	<script src="{{ URL::asset('js/jquery.min.js') }}""></script>
+	<script src="{{ URL::asset('js/mdb.min.js') }}""></script>
 @if($errors->any())
 		@foreach($errors->all() as $error)
 			<?php echo "<script type='text/javascript'>toastr['warning']('".$error."')</script>"; ?>
@@ -129,7 +122,7 @@
                                 @endif
 						  	</div>
 							<div class="md-form">
-								<button class="btn btn-primary" id="alert-target"><i class="fa fa-btn fa-sign-in"></i> Login</button>
+								<button class="btn btn-primary" type="submit" id="alert-target"><i class="fa fa-btn fa-sign-in"></i> Login</button>
 								<a class="btn btn-secondary" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
 						  	</div>
 						  	<div class="md-form">
