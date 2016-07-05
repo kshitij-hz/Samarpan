@@ -310,7 +310,7 @@ hr {
   height: 100vh;
   text-align: center;
 }
-#home h1 {
+#home #account h1 {
   font-size: 20px;
   letter-spacing: 8px;
   font-style: normal;

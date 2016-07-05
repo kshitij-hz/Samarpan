@@ -114,7 +114,8 @@ class UserController extends Controller
         $seniorCitizenDetails = array();
         foreach($seniorCitizens as $seniorCitizen) {
             $details = $seniorCitizen->user->detail()->get();
-            if(count($details) != 0)    
+            $verify = $seniorCitizen->user->verify;
+            if(count($details) != 0 && $verify==1)
                 array_push($seniorCitizenDetails, $details);
         }
         $perPage = 2;

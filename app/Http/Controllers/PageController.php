@@ -26,4 +26,8 @@ class PageController extends Controller
     public function about() {
 
     }
+
+    public function account() {
+        return view('pages.account');
+    }
 }

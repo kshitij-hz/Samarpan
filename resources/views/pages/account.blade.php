@@ -1,15 +1,10 @@
 @extends('layouts.default')
 @section('content')
-<section id="account" class="parallax-section" style="display:none;">
+<section id="account" class="parallax-section" >
 	<div class="container">
 		{{--  --}}
 		<div class="row" id="accordion">
-			<div class="col-md-5 col-md-offset-1 col-sm-12 clearfix hidden-xs" style="text-align:center;padding-top:120px;">
-				<h1 style="color:white;">SAMARPAN</h1><br>
-				<h4 style="color:white;">because</h4>
-				<a style="color:white;border-color:white;" class="btn btn-danger-outline">OLD IS GOLD</a>
-			</div>
-			<div class="col-md-offset-1 col-md-5 col-sm-12 collapse" id="register" data-parent="#accordion" style="display:none;">
+			<div class="col-md-offset-2 col-md-8 col-sm-12 collapse" id="register" data-parent="#accordion">
 				<div class="card" style="background:rgba(255,255,255,0.74)">
 					<div class="title-style text-center" style="background:rgba(244,67,54,0.74)">
 						<h1 class="heading">Create Profile</h1>
@@ -75,6 +70,8 @@
 							</div>
 							<div class="md-form">
 								<button type="submit" class="btn btn-primary" name="register" value="register"><i class="fa fa-btn fa-user"></i> Register</button>
+							</div>
+							<div class="md-form">
 								<a class="btn teal" aria-expanded="false" id="click2">Already Have an Account, Login here?</a>
 						  	</div>
 						</form>
@@ -82,7 +79,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-offset-1 col-md-5 col-sm-12 collapse in" id="login" data-parent="#accordion" style="display:none;">
+			<div class="col-md-offset-2 col-md-8 col-sm-12 collapse in" id="login" data-parent="#accordion">
 				<div class="card text-center" style="background:rgba(255,255,255,0.74)">
 					<div class="title-style" style="background:rgba(244,67,54,0.74)">
 						<h1 class="heading" >Login</h1>
@@ -136,47 +133,5 @@
 		{{--  --}}
 	
 	</div>		
-</section>
-<section  id="home" class="parallax-section">
-	<div class="container">
-	   	{{--  --}}
-         	<div class="row">
-			<div class="col-md-12 col-sm-12">
-				<h1>SAMARPAN</h1><br>
-				<h4>because</h4>
-				<a class="btn btn-danger-outline">OLD IS GOLD</a>
-			</div>
-		</div>
-	   	{{--  --}}
-	</div>		
-</section>
-
-<!-- contact section -->
-<section id="contact" class="parallax-section">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-offset-1 col-md-10 col-sm-12 text-center">
-				<h1 class="heading">Contact Us</h1>
-				<hr>
-			</div>
-			<div class="col-md-offset-1 col-md-10 col-sm-12 wow fadeIn" data-wow-delay="0.9s">
-				<form action="contact" method="post">
-					<div class="col-md-6 col-sm-6 md-form">
-						<input name="name" type="text" class="form-control" id="name" placeholder="Name">
-				  	</div>
-					<div class="col-md-6 col-sm-6 md-form">
-						<input name="email" type="email" class="form-control" id="email" placeholder="Email">
-				 	</div>
-					<div class="col-md-12 col-sm-12 md-form">
-						<textarea name="message" rows="8" class="md-textarea form-control" id="message" placeholder="Message"></textarea>
-					</div>
-					<div class="md-form col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
-						<input name="submit" type="submit" class="form-control" id="submit" value="send message">
-					</div>
-				</form>
-			</div>
-			<div class="col-md-2 col-sm-1"></div>
-		</div>
-	</div>
 </section>
 @stop

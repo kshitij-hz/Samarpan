@@ -25,10 +25,7 @@
                     </li>
                     <!--Search form--> 
                     <li class="nav-item">
-                        <a class="nav-link smoothScroll" href="/">Don't Have Account?</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link smoothScroll" href="/">Login</a>
+                        <a class="nav-link smoothScroll" id="clicklogin">Signup/Signin</a>
                     </li>
                 @endif
 

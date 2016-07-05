@@ -3,7 +3,20 @@
 $(window).load(function(){
     $('.preloader').fadeOut(1000); // set duration in brackets    
 });
-
+$('#clicklogin').click(function() {
+  $('#account').show();
+  $('#login').show();
+  $('#home').hide();
+  // $('#register').toggle();
+});
+$('#click1').click(function() {
+  $('#login').toggle();
+  $('#register').toggle();
+});
+$('#click2').click(function() {
+  $('#login').toggle();
+  $('#register').toggle();
+});
 /* HTML document is loaded. DOM is ready. 
 -------------------------------------------*/
 $(function(){
