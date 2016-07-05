@@ -47,13 +47,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('admin/departments') }}">Departments</a>
                     </li>
-                    <li class="nav-item dropdown right">
-                        <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <b>{{Auth::user()->name}}</b></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="{{ url('admin/settings') }}">Settings <i class="fa fa-gear"></i></a>
-                            <a class="dropdown-item" href="{{ url('logout') }}">Logout <i class="fa fa-sign-out"></i></a>
-                        </div>
-                    </li>
                 @endif
                 @if(Auth::user()->type == '3' || Auth::user()->type == '2' || Auth::user()->type == '1')
                     @if(count(Auth::user()->detail()->get()))
@@ -88,14 +81,12 @@
                         <a class="nav-link" href="{{ url('upload') }}">Upload Data</a>
                     </li>
                 @endif
-                @if(Auth::user()->type == '3' || Auth::user()->type == '2' || Auth::user()->type == '1')
-                    <li class="nav-item dropdown right">
-                        <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <b>{{Auth::user()->name}}</b></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="{{ url('logout') }}">Logout <i class="fa fa-sign-out"></i></a>
-                        </div>
-                    </li>
-                @endif
+                <li class="nav-item dropdown right">
+                    <a class="nav-link dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome, <b>{{Auth::user()->name}}</b></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item" href="{{ url('logout') }}">Logout <i class="fa fa-sign-out"></i></a>
+                    </div>
+                </li>
                 @endif
             </ul>
         </div>
