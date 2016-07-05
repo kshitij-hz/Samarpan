@@ -35,14 +35,14 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $registerView = 'pages.account';
+    protected $registerView = 'pages.home';
 
     /**
      * Where to redirect users for login
      *
      * @var string
      */
-    protected $loginView = 'pages.account';
+    protected $loginView = 'pages.home';
 
     /**
      * Create a new authentication controller instance.
