@@ -31,6 +31,20 @@ class AuthController extends Controller
     protected $redirectTo = '/';
 
     /**
+     * Where to redirect users for registration
+     *
+     * @var string
+     */
+    protected $registerView = '/';
+
+    /**
+     * Where to redirect users for login
+     *
+     * @var string
+     */
+    protected $loginView = '/';
+
+    /**
      * Create a new authentication controller instance.
      *
      * @return void
@@ -50,8 +64,10 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
+            'contact' => 'required|min:10|max:10',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'type' => 'required',
         ]);
     }
 
@@ -64,9 +80,11 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
+            'type' => $data['type'],
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'contact' => $data['contact'],
+            'password' => bcrypt($data['password'])
         ]);
     }
 }
