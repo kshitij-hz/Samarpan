@@ -153,7 +153,7 @@
 				<hr>
 			</div>
 			<div class="col-md-offset-1 col-md-10 col-sm-12 wow fadeIn" data-wow-delay="0.9s">
-				<form action="contact" method="post">
+				<form action="contact" method="post" action="{{ url('contact') }}">
 					{{csrf_field()}}
 					<div class="col-md-6 col-sm-6 md-form">
 						<input name="name" type="text" class="form-control" id="name" placeholder="Name">
@@ -167,6 +167,10 @@
 					<div class="md-form col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
 						<input name="submit" type="submit" class="form-control" id="submit" value="send message">
 					</div>
+					@if (session('contact_result'))
+                       <?php echo "<script type='text/javascript'>toastr['success']('Contact message successfully sent to the admin')</script>"; ?> 
+                     @endif
+                                
 				</form>
 			</div>
 			<div class="col-md-2 col-sm-1"></div>
