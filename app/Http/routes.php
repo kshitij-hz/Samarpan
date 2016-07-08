@@ -4,7 +4,7 @@ Route::auth();
 /*The routes for different page links*/
 Route::get('/', 'PageController@index');
 Route::get('about', 'PageController@about');
-Route::get('contact', 'PageController@contact');
+Route::post('contact', 'PageController@contact');
 
 /*The routes for admin*/
 Route::get('admin', 'AdminController@index');
