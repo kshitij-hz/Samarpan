@@ -63,7 +63,7 @@
 					            </fieldset>
 
 					            <fieldset class="form-group">
-					                <input name="gender" type="radio" id="male" value="female">
+					                <input name="gender" type="radio" id="female" value="female">
 					                <label for="female">Female</label>
 					            </fieldset>
 

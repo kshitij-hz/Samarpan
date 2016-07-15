@@ -46,7 +46,11 @@
 			<div class="card">
 			    <!--Card image-->
 			    <div class="view overlay hm-white-slight">
-			        <img src="{{url('photo/'.$detail->photo)}}" class="img-fluid" alt="">
+			        @if($detail->photo)
+						<img class="img-fluid" src="{{url('photo/'.$detail->photo)}}" alt="{{$detail->name}}" style="margin-bottom:6px;">
+					@else
+						
+					@endif
 			        <a href="#">
 			            <div class="mask"></div>
 			        </a>
